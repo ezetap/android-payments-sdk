@@ -1,8 +1,5 @@
 # android-sdk
-This SDK will work for both Android Native and Hybrid Applications. The SDK API will help you integrate with the Ezetap services in to your applciation. This documentation contains the instructions to integrate-
-
-1. Ezetap Native Android SDK
-2. Ezetap Cordova SDK
+This SDK will work for both Android Native and Hybrid Applications. The SDK API will help you integrate with the Ezetap services in to your applciation. This documentation contains the instructions to integrate.
 
 ## Before we go into details lets go through the steps to include sdk in your android application
 #### If you choose aar:

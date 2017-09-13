@@ -1,12 +1,13 @@
-# android-sdk
-This SDK will work for both Android Native and Hybrid Applications. The SDK API will help you integrate with the Ezetap services in to your applciation. This documentation contains the instructions to integrate.
+# android-payments-sdk
+Ezetap payments SDK can be integrated in both Android native and hybrid applications. Integrating the SDK will allow you to access Ezetap services in your application. SDK is available in 
+`jar` and `aar` formats. We recommend using aar, as you can get started right away!
 
-## Before we go into details lets go through the steps to include sdk in your android application
+## How to include payments-sdk in your android application
 #### If you choose aar:
-* Copy the aar into libs folder under the project directory.
+* Copy the aar file, available in the latest version in <a href=https://github.com/ezetap/android-payments-sdk/tree/master/release> release </a> folder, into libs folder under your project directory.
 * Add the below line in dependencies of your build.gradle file in your application.
 ```
-  compile(name: 'ezetapandroidsdk_X', ext: 'aar') Note: 'X' in the 'ezetapandroidsdk_X' represents the version
+  compile(name: 'ezetapandroidsdk_X', ext: 'aar') Note: 'X' in the 'ezetapandroidsdk_X' represents the version (ex: ezetapandroidsdk_2_0)
 ``` 
 * Add the below line in repositories section of your build.gradle
 ```

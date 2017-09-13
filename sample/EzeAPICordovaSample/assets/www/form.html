@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Security-Policy"
+			content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<meta name="viewport"
+			content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+		<link rel="stylesheet" type="text/css" href="css/form.css">
+		<title>Invoice form</title>		
+	</head>
+	<body>
+		<div id="formData">
+			<h1>EzeAPI Sample</h1>
+			<input id="referenceNumber" type="number" placeholder="Reference Number*" />
+			<input id="amount" type="number" placeholder="Amount*" />
+			<input id="amountCashBack" type="number" placeholder="Cash Back Amount" />
+			<input id="name" type="text" placeholder="Customer Name" />
+			<input id="mobile" type="tel" placeholder="Customer Mobile" />
+			<input id="email" type="email" placeholder="Customer Email" />
+			<input id="chqNum" type="text" placeholder="Cheque Number*" />
+			<input id="bankCode" type="text" placeholder="Bank Code*" />
+			<input id="bankName" type="text" placeholder="Bank Name*" />
+			<input id="bankAccNum" type="text" placeholder="Bank Account Number*" />
+			<input id="chqDate" type="text" placeholder="Cheque Date*" />
+			
+			<input id="btnInitialize" type="button" style="color:#000000;" value="Initialize">
+            <input id="btnPrepDevice" type="button" style="color:#000000;" value="Prepare Device">
+            <input id="btnWalletTxn" type="button" style="color:#000000;" value="Pay by Wallet">
+            <input id="btnChqTxn" type="button" style="color:#000000;" value="Pay by Cheque">
+            <input id="btnPaySale" type="button" style="color:#000000;" value="Pay by Card - Sale">
+			<input id="btnPayCashback" type="button" style="color:#000000;" value="Pay by Card - Cashback">
+			<input id="btnPayCashAtPOS" type="button" style="color:#000000;" value="Pay by Card - Cash@POS">
+			<input id="btnPayByCash" type="button" style="color:#000000;" value="Pay by Cash">
+			<input id="btnTransactionHistory" type="button" style="color:#000000;" value="Transaction History">
+			<input id="btnVoidTransaction" type="button" style="color:#000000;" value="Void Last Transaction">
+			<input id="btnAttachSignature" type="button" style="color:#000000;" value="Attach Signature">
+            <input id="btnUpdate" type="button" style="color:#000000;" value="Update">
+			<input id="btnLogout" type="button" style="color:#000000;" value="Logout">
+			<img id="sampleImg" src="img/logo.png" style="height: 50px; margin-left: auto; margin-right: auto; display: block; margin-top: 10px;">
+		</div>
+		<div id="messageDiv" style="display:none">
+			<h1 id="messageTag">Make Payment</h1>
+			<h2 id="messageDesc">Make Payment</h2>
+		</div>
+	</body>
+	<script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/Ezehelper.js"></script>
+    <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+</html>

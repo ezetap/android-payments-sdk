@@ -1,36 +1,37 @@
 # android-payments-sdk
 Ezetap payments SDK can be integrated in both Android native and hybrid applications. Integrating the SDK will allow you to access Ezetap services in your application. SDK is available in 
-`jar` and `aar` formats. We recommend using aar, as you can get started right away!
+`jar` and `aar` formats. We recommend using `aar`, as you can get started right away!
 
 ## How to include payments-sdk in your android application
-#### If you choose aar:
-* Copy the aar file, available in the latest version in <a href=https://github.com/ezetap/android-payments-sdk/tree/master/release> release </a> folder, into libs folder under your project directory.
-* Add the below line in dependencies of your build.gradle file in your application.
+#### If you choose `aar`:
+* Copy the `aar` file, available in the latest version in <a href=https://github.com/ezetap/android-payments-sdk/tree/master/release>release</a> folder, into `libs` folder under your project directory.
+* Add the below line in dependencies of your `build.gradle` file in your application.
 ```
   compile(name: 'ezetapandroidsdk_X', ext: 'aar') Note: 'X' in the 'ezetapandroidsdk_X' represents the version (ex: ezetapandroidsdk_2_0)
 ``` 
-* Add the below line in repositories section of your build.gradle
+* Add the below line in repositories section of your `build.gradle`
 ```
   flatDir {
           dirs 'libs'
       }
 ```
 #### If you choose jar:
-* You can find sdk jar file in the <a href="https://github.com/ezetap/android-payments-sdk/tree/master/release">releases </a> folder of this repository, Add the jar file in libs folder of your Native Android Project.
-* In the manifest file of your project add the permission WRITE_EXTERNAL_STORAGE, which looks like this-
+* You can find SDK `jar` file in the <a href="https://github.com/ezetap/android-payments-sdk/tree/master/release">release </a> folder of this repository, Add the `jar` file in `libs` folder of your Native Android Project.
+* In the `manifest` file of your project add the permission WRITE_EXTERNAL_STORAGE, which looks like this-
 ```xml
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
-* In the manifest file of your Android Project add a new Activity, which looks like this-
+* In the `manifest` file of your Android Project, add the below activity
 ```xml
   <activity android:name="com.eze.api.EzeAPIActivity"
         android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
         android:screenOrientation="portrait"
         android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 ```
-* If you intend to support Android Nougat API Level 24 & above, follow the below 2 steps - 
 
-1. Add the below provider in your project's manifest file inside application tag & replace your application ID in the place of <Your application ID>. Your app ID/package name can be found in your app's manifest file under package tag or in the applicationId tag of your gradle file.
+* If you intend to support Android Nougat API Level 24 & above, follow these steps: 
+
+1. Add the below provider in your project's `manifest` file inside application tag & replace your application ID in the place of `<Your application ID>`. Your app ID/package name can be found in your app's `manifest` file under package tag or in the `applicationId` tag of your Gradle file.
 
 ```xml
 
@@ -46,7 +47,8 @@ Ezetap payments SDK can be integrated in both Android native and hybrid applicat
 
 ```
 
-2. Create a file with name provider_paths.xml in your Project > res > xml > folder and paste the below code-
+2. Create a file with name `provider_paths.xml` in your `Project / res / xml` folder and paste the following code:
+
 ```xml
 	<?xml version="1.0" encoding="utf-8"?>
 	<paths xmlns:android="http://schemas.android.com/apk/res/android" >

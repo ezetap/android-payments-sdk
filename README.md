@@ -16,7 +16,7 @@ Ezetap payments SDK can be integrated in both Android native and hybrid applicat
       }
 ```
 #### If you choose jar:
-* You can find sdk jar file in the releases folder of this repository, Add the jar file in <a href="https://github.com/ezetap/android-payments-sdk/tree/master/release">libs</a> folder of your Native Android Project.
+* You can find sdk jar file in the <a href="https://github.com/ezetap/android-payments-sdk/tree/master/release">releases </a> folder of this repository, Add the jar file in libs folder of your Native Android Project.
 * In the manifest file of your project add the permission WRITE_EXTERNAL_STORAGE, which looks like this-
 ```xml
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

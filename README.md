@@ -96,23 +96,22 @@ To integrate this API, you need to know how Cordova works & how to configure Cor
 6. Ezetap device to test card payments
 
 ## Sample app
-There is a sample Android App inside the sample folder of the repository. You can use this project as a reference to integrate Ezetap SDK.
+There is a sample Android App inside the `sample` folder of this repository. You can use this project as a reference to integrate with the Ezetap SDK.
 
-##### Follow the steps below to get the demo app working:
-1. Import the project as an Android Project in Android Studio
-2. Clean & Build the project.
-3. Run the EzeCordovaSampleActivity on your Smartphone.
-4. Ezehelper.js will be your point of reference for Cordova Android SDK integration.
+##### Follow the steps below to get the sample app working:
+1. Import the project as an Android Project in Android Studio.
+2. Clean & build the project.
+3. Run the `EzeCordovaSampleActivity` on your smartphone.
+4. `Ezehelper.js` will be your point of reference for Cordova Android SDK integration.
 
-* <b>IMPORTANT:</b> If your project's targetSdkVersion is higher or equal to 23(Android 6.0 Marshmallow) please add Android support library v4 to your Android project from <a href="http://developer.android.com/tools/support-library/setup.html">here.</a> The Android support libraries are not required if your project's targetSdkVersion is lesser than 23.
-* Good to go, please refer <a href="http://developers.ezetap.com/api/"> Ezetap API Portal</a> for API usage
+* <b>IMPORTANT:</b> If your project's `targetSdkVersion` is higher or equal to 23(Android 6.0 Marshmallow) please add Android support library v4 to your Android project from <a href="http://developer.android.com/tools/support-library/setup.html">here.</a> The Android support libraries are not required if your project's `targetSdkVersion` is lesser than 23.
+* Good to go, please refer <a href="http://developers.ezetap.com/api/"> Ezetap API Portal</a> for API usage.
 
 ><b>Note:</b> The EzeAPIActivity has to be configured with the same attributes as given above.
 
-
-><b>Note:</b> The errors you may face while importing the project will most likely be for Android version mismatch which EclipseIDE would normally resolve itself. Changing the Android version or restarting the Eclipse can help u solve this problem.
+><b>Note:</b> The errors you may face while importing the project will most likely be for Android version mismatch which the EclipseIDE would normally resolve itself. Changing the Android version or restarting the Eclipse can help you fix this issue.
 
 * You can find the documentation on how to create a Cordova plugin for Android <a href="https://github.com/ezetap/android-payments-sdk/tree/master/docs">here</a>.
 
-><b>Note:</b> Refer to the <a href="https://github.com/ezetap/android-payments-sdk/blob/master/docs/Ezetap%20Cordova%20Integration.pdf" target="_blank">Ezetap Cordova Integration</a> document for Android Nougat support changes which are highlighted.
+><b>Note:</b> Refer to the <a href="https://github.com/ezetap/android-payments-sdk/blob/master/docs/Ezetap%20Cordova%20Integration.pdf" target="_blank">Ezetap Cordova Integration</a> document for Android Nougat support changes, these are highlighted in the guide.
 

@@ -7,6 +7,11 @@ var payBtn = document.getElementById('btnPaySale');
 var payBtnCashback = document.getElementById('btnPayCashback');
 var payBtnCashAtPOS = document.getElementById('btnPayCashAtPOS');
 var payBtnCash = document.getElementById('btnPayByCash');
+
+var genericPayBtn = document.getElementById('btnGenericPay');
+var upiPayBtn = document.getElementById('btnUpiPay');
+var remotePayBtn = document.getElementById('btnRemotePay');
+
 var payBtnTransHistory = document.getElementById('btnTransactionHistory');
 var btnVoidTransaction = document.getElementById('btnVoidTransaction');
 var btnAttachSignature = document.getElementById('btnAttachSignature');
@@ -37,13 +42,13 @@ initBtn.onclick = function(){
 		$("#messageDesc").text("Tap here to do another transaction.\n\n"+JSON.stringify(response));			
 	};
 	var EzetapConfig = {
-		   "demoAppKey": "your demo app key", 
-		   "prodAppKey": "your prod app key", 
+		   "demoAppKey": "Enter your demo app key",
+		   "prodAppKey": "Enter your prod app key",
 		   "merchantName": "your merchant name", 
-		   "userName": "your user name", 
+		   "userName": "Your User Name",
 		   "currencyCode": "INR", 
-		   "appMode": "DEMO/PROD",
-		   "captureSignature": "true/false",  
+		   "appMode": "SANDBOX/PROD",
+		   "captureSignature": "true/false",
 		   "prepareDevice": "true/false"
 	};
 	cordova.exec(ezeTapSuccessCallBack,ezeTapFailureCallBack,"EzeAPIPlugin","initialize",
@@ -320,6 +325,121 @@ payBtnCheque.onclick = function(){
 	}
 }
 
+genericPayBtn.onclick = function(){
+	var refNum = $("#referenceNumber").val();
+	var amount = $("#amount").val();
+	if(refNum!="" && amount!=""){
+		var ezeTapSuccessCallBack = function(response){
+			$("#formData").hide();
+			$("#messageDiv").show();
+			$("#messageTag").text("Transaction successful");
+			transactionID = JSON.parse(response).result.txn.txnId;
+			$("#messageDesc").text("Tap here to do another transaction.\n\n"+JSON.stringify(response));
+		};
+		var ezeTapFailureCallBack = function(response){
+			$("#formData").hide();
+			$("#messageDiv").show();
+			$("#messageTag").text("Transaction failed");
+			$("#messageDesc").text("Tap here to do another transaction.\n\n"+JSON.stringify(response));
+		};
+
+		var Request = {
+				"amount": amount,
+				"options": {
+					"amountCashback": 0.0,
+					"amountTip": 0.0,
+					"references": {
+						"reference1":refNum
+					},
+					"customer": {
+						"name":$("#name").val(),
+						"mobileNo":$("#mobile").val(),
+						"email":$("#email").val()
+					}
+				},
+		};
+		cordova.exec(ezeTapSuccessCallBack,ezeTapFailureCallBack,"EzeAPIPlugin","pay",[Request]);
+	}else{
+		alert("Please fill up mandatory fields.");
+	}
+}
+
+upiPayBtn.onclick = function(){
+	var refNum = $("#referenceNumber").val();
+	var amount = $("#amount").val();
+	if(refNum!="" && amount!=""){
+		var ezeTapSuccessCallBack = function(response){
+			$("#formData").hide();
+			$("#messageDiv").show();
+			$("#messageTag").text("Transaction successful");
+			transactionID = JSON.parse(response).result.txn.txnId;
+			$("#messageDesc").text("Tap here to do another transaction.\n\n"+JSON.stringify(response));
+		};
+		var ezeTapFailureCallBack = function(response){
+			$("#formData").hide();
+			$("#messageDiv").show();
+			$("#messageTag").text("Transaction failed");
+			$("#messageDesc").text("Tap here to do another transaction.\n\n"+JSON.stringify(response));
+		};
+
+		var Request = {
+				"amount": amount,
+				"options": {
+					"amountCashback": 0.0,
+					"amountTip": 0.0,
+					"references": {
+						"reference1":refNum
+					},
+					"customer": {
+						"name":$("#name").val(),
+						"mobileNo":$("#mobile").val(),
+						"email":$("#email").val()
+					}
+				},
+		};
+		cordova.exec(ezeTapSuccessCallBack,ezeTapFailureCallBack,"EzeAPIPlugin","upiTransaction",[Request]);
+	}else{
+		alert("Please fill up mandatory fields.");
+	}
+}
+remotePayBtn.onclick = function(){
+	var refNum = $("#referenceNumber").val();
+	var amount = $("#amount").val();
+	if(refNum!="" && amount!=""){
+		var ezeTapSuccessCallBack = function(response){
+			$("#formData").hide();
+			$("#messageDiv").show();
+			$("#messageTag").text("Transaction successful");
+			transactionID = JSON.parse(response).result.txn.txnId;
+			$("#messageDesc").text("Tap here to do another transaction.\n\n"+JSON.stringify(response));
+		};
+		var ezeTapFailureCallBack = function(response){
+			$("#formData").hide();
+			$("#messageDiv").show();
+			$("#messageTag").text("Transaction failed");
+			$("#messageDesc").text("Tap here to do another transaction.\n\n"+JSON.stringify(response));
+		};
+
+		var Request = {
+				"amount": amount,
+				"options": {
+					"amountCashback": 0.0,
+					"amountTip": 0.0,
+					"references": {
+						"reference1":refNum
+					},
+					"customer": {
+						"name":$("#name").val(),
+						"mobileNo":$("#mobile").val(),
+						"email":$("#email").val()
+					}
+				},
+		};
+		cordova.exec(ezeTapSuccessCallBack,ezeTapFailureCallBack,"EzeAPIPlugin","remotePayment",[Request]);
+	}else{
+		alert("Please fill up mandatory fields.");
+	}
+}
 payBtnTransHistory.onclick = function(){
 	var ezeTapSuccessCallBack = function(response){
 		$("#formData").hide();

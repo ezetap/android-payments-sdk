@@ -101,6 +101,37 @@
                 android:onClick="onClick"
                 android:text="Cash Transaction"
                 android:textColor="@android:color/black" />
+            <Button
+                android:id="@+id/btnUPITxn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/round_corner"
+                android:elevation="2dp"
+                android:onClick="onClick"
+                android:text="UPI Transaction"
+                android:textColor="@android:color/black" />
+
+            <Button
+                android:id="@+id/btnPay"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/round_corner"
+                android:elevation="2dp"
+                android:onClick="onClick"
+                android:text="Pay"
+                android:textColor="@android:color/black" />
+            <Button
+                android:id="@+id/btnRemotePay"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/round_corner"
+                android:elevation="2dp"
+                android:onClick="onClick"
+                android:text="Remote Pay"
+                android:textColor="@android:color/black" />
 
             <Button
                 android:id="@+id/btnSearchTxn"

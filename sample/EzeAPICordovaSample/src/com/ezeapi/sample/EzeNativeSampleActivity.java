@@ -47,6 +47,9 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 	private final int REQUEST_CODE_CLOSE = 10014;
 	private final int REQUEST_CODE_GET_TXN_DETAIL = 10015;
 	private final int REQUEST_CODE_GET_INCOMPLETE_TXN = 10016;
+	private final int REQUEST_CODE_PAY = 10017;
+	private final int REQUEST_CODE_UPI = 10018;
+    private final int REQUEST_CODE_REMOTE_PAY = 10019;
 
 	/**
 	 * The Base64 Image bitmap string for attach e-signature
@@ -97,6 +100,12 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 		case R.id.btnCashTxn:
 			openPaymentPayloadPopup(REQUEST_CODE_CASH_TXN);
 			break;
+		case R.id.btnPay:
+			openPaymentPayloadPopup(REQUEST_CODE_PAY);
+			break;
+        case R.id.btnRemotePay:
+            openPaymentPayloadPopup(REQUEST_CODE_REMOTE_PAY);
+            break;
 		case R.id.btnSearchTxn:
 			doSearchTxn();
 			break;
@@ -114,6 +123,9 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 			break;
 		case R.id.btnGetTxnDetails:
 			openTXNIdEnterPopup(REQUEST_CODE_GET_TXN_DETAIL);
+			break;
+		case R.id.btnUPITxn:
+			openPaymentPayloadPopup(REQUEST_CODE_UPI);
 			break;
 		case R.id.btnClose:
 			doCloseEzetap();
@@ -142,14 +154,14 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 		 **********************************************/
 		JSONObject jsonRequest = new JSONObject();
 		try {
-			jsonRequest.put("demoAppKey", "6c545b6b-37df-4883-8a22-2d89577f3bdd");
+			jsonRequest.put("demoAppKey", "Enter your sandbox app key here");
 			jsonRequest.put("prodAppKey", "Enter your prod app key here");
 			jsonRequest.put("merchantName", "Merchant Name");
-			jsonRequest.put("userName", "User name");
+			jsonRequest.put("userName", "Your User Name");
 			jsonRequest.put("currencyCode", "INR");
-			jsonRequest.put("appMode", "DEMO");
-			jsonRequest.put("captureSignature", "true");
-			jsonRequest.put("prepareDevice", "false");
+			jsonRequest.put("appMode", "SANDBOX/PROD");
+			jsonRequest.put("captureSignature", "true/false");
+			jsonRequest.put("prepareDevice", "true/false");
 			EzeAPI.initialize(this, REQUEST_CODE_INITIALIZE, jsonRequest);
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -340,6 +352,82 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 	}
 
 	/**
+	 * Ability to perform upi transaction
+	 */
+	private void doUPITxn(JSONObject jsonRequest) {
+		/******************************************
+		 {
+		 "amount": "123",
+		 "options": {
+		 "references": {
+		 "reference1": "1234",
+		 "additionalReferences": [
+		 "addRef_xx1",
+		 "addRef_xx2"
+		 ]
+		 },
+		 "customer": {
+		 "name": "xyz",
+		 "mobileNo": "1234567890",
+		 "email": "abc@xyz.com"
+		 }
+		 }
+		 }
+		 ******************************************/
+		EzeAPI.upiTransaction(this, REQUEST_CODE_UPI, jsonRequest);
+	}
+
+	private void doPay(JSONObject jsonRequest) {
+		/******************************************
+		 {
+		 "amount": "123",
+		 "options": {
+		 "references": {
+		 "reference1": "1234",
+		 "additionalReferences": [
+		 "addRef_xx1",
+		 "addRef_xx2"
+		 ]
+		 },
+		 "customer": {
+		 "name": "xyz",
+		 "mobileNo": "1234567890",
+		 "email": "abc@xyz.com"
+		 }
+		 }
+		 }
+		 ******************************************/
+		EzeAPI.pay(this, REQUEST_CODE_PAY, jsonRequest);
+	}
+
+    /**
+     * Ability to perform upi transaction
+     */
+    private void doRemotePayTxn(JSONObject jsonRequest) {
+        /******************************************
+         {
+         "amount": "123",
+         "options": {
+         "references": {
+         "reference1": "1234",
+         "additionalReferences": [
+         "addRef_xx1",
+         "addRef_xx2"
+         ]
+         },
+         "customer": {
+         "name": "xyz",
+         "mobileNo": "1234567890",
+         "email": "abc@xyz.com"
+         }
+         }
+         }
+         ******************************************/
+        EzeAPI.remotePayment(this, REQUEST_CODE_REMOTE_PAY, jsonRequest);
+    }
+
+
+    /**
 	 * search transactions for a merchant based on certain search parameters
 	 */
 	private void doSearchTxn() {
@@ -475,6 +563,7 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 				Log.d("SampleAppLogs", intent.getStringExtra("response"));
 			}
 			switch (requestCode) {
+			case REQUEST_CODE_UPI:
 			case REQUEST_CODE_CASH_TXN:
 			case REQUEST_CODE_CASH_BACK_TXN:
 			case REQUEST_CODE_CASH_AT_POS_TXN:
@@ -606,6 +695,8 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 
 						// Building References Object
 						jsonReferences.put("reference1", orderNumberEditText.getText().toString().trim());
+						jsonReferences.put("reference2", orderNumberEditText.getText().toString().trim());
+						jsonReferences.put("reference3", orderNumberEditText.getText().toString().trim());
 
 						// Passing Additional References
 						JSONArray array = new JSONArray();
@@ -651,11 +742,11 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 						case REQUEST_CODE_CHEQUE_TXN:
 							// Building Cheque Object
 							JSONObject jsonCheque = new JSONObject();
-							jsonCheque.put("chequeNumber", "");
-							jsonCheque.put("bankCode", "");
-							jsonCheque.put("bankName", "");
-							jsonCheque.put("bankAccountNo", "");
-							jsonCheque.put("chequeDate", "");
+							jsonCheque.put("chequeNumber", "125441");
+							jsonCheque.put("bankCode", "TEST0001233");
+							jsonCheque.put("bankName", "TEST Bank");
+							jsonCheque.put("bankAccountNo", "1234567890");
+							jsonCheque.put("chequeDate", "2017-12-10");
 
 							jsonRequest.put("cheque", jsonCheque);
 
@@ -676,6 +767,15 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 						case REQUEST_CODE_CASH_TXN:
 							doCashTxn(jsonRequest);
 							break;
+						case REQUEST_CODE_PAY:
+							doPay(jsonRequest);
+							break;
+						case REQUEST_CODE_UPI:
+							doUPITxn(jsonRequest);
+							break;
+                        case REQUEST_CODE_REMOTE_PAY:
+                            doRemotePayTxn(jsonRequest);
+                            break;
 						}
 						alertDialog.cancel();
 					} catch (Exception e) {

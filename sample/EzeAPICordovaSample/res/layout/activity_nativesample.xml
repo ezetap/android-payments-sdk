@@ -111,6 +111,16 @@
                 android:onClick="onClick"
                 android:text="UPI Transaction"
                 android:textColor="@android:color/black" />
+            <Button
+                android:id="@+id/btnQRCodeTxn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/round_corner"
+                android:elevation="2dp"
+                android:onClick="onClick"
+                android:text="QR Code Transaction"
+                android:textColor="@android:color/black" />
 
             <Button
                 android:id="@+id/btnPay"

@@ -50,7 +50,7 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 	private final int REQUEST_CODE_PAY = 10017;
 	private final int REQUEST_CODE_UPI = 10018;
     private final int REQUEST_CODE_REMOTE_PAY = 10019;
-
+	private final int REQUEST_CODE_QR_CODE_PAY = 10020;
 	/**
 	 * The Base64 Image bitmap string for attach e-signature
 	 */
@@ -127,6 +127,9 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 		case R.id.btnUPITxn:
 			openPaymentPayloadPopup(REQUEST_CODE_UPI);
 			break;
+		case R.id.btnQRCodeTxn:
+			openPaymentPayloadPopup(REQUEST_CODE_QR_CODE_PAY);
+			break;
 		case R.id.btnClose:
 			doCloseEzetap();
 			break;
@@ -147,17 +150,17 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 		   "merchantName": "your merchant name", 
 		   "userName": "your user name", 
 		   "currencyCode": "INR", 
-		   "appMode": "DEMO/PROD",
+		   "appMode": "SANDBOX/PROD",
 		   "captureSignature": "true/false",  
 		   "prepareDevice": "true/false"
 		 }
 		 **********************************************/
 		JSONObject jsonRequest = new JSONObject();
 		try {
-			jsonRequest.put("demoAppKey", "Enter your sandbox app key here");
-			jsonRequest.put("prodAppKey", "Enter your prod app key here");
+			jsonRequest.put("demoAppKey", "your demo app key");
+			jsonRequest.put("prodAppKey", "your prod app key");
 			jsonRequest.put("merchantName", "Merchant Name");
-			jsonRequest.put("userName", "Your User Name");
+			jsonRequest.put("userName", "Username");
 			jsonRequest.put("currencyCode", "INR");
 			jsonRequest.put("appMode", "SANDBOX/PROD");
 			jsonRequest.put("captureSignature", "true/false");
@@ -400,10 +403,36 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 		EzeAPI.pay(this, REQUEST_CODE_PAY, jsonRequest);
 	}
 
+	/**
+	 * Ability to perform upi transaction
+	 */
+	private void doRemotePayTxn(JSONObject jsonRequest) {
+		/******************************************
+		 {
+		 "amount": "123",
+		 "options": {
+		 "references": {
+		 "reference1": "1234",
+		 "additionalReferences": [
+		 "addRef_xx1",
+		 "addRef_xx2"
+		 ]
+		 },
+		 "customer": {
+		 "name": "xyz",
+		 "mobileNo": "1234567890",
+		 "email": "abc@xyz.com"
+		 }
+		 }
+		 }
+		 ******************************************/
+		EzeAPI.remotePayment(this, REQUEST_CODE_REMOTE_PAY, jsonRequest);
+	}
+
     /**
      * Ability to perform upi transaction
      */
-    private void doRemotePayTxn(JSONObject jsonRequest) {
+    private void doQrCodePayTxn(JSONObject jsonRequest) {
         /******************************************
          {
          "amount": "123",
@@ -423,7 +452,7 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
          }
          }
          ******************************************/
-        EzeAPI.remotePayment(this, REQUEST_CODE_REMOTE_PAY, jsonRequest);
+        EzeAPI.qrCodeTransaction(this, REQUEST_CODE_QR_CODE_PAY, jsonRequest);
     }
 
 
@@ -776,6 +805,9 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
                         case REQUEST_CODE_REMOTE_PAY:
                             doRemotePayTxn(jsonRequest);
                             break;
+						case REQUEST_CODE_QR_CODE_PAY:
+							doQrCodePayTxn(jsonRequest);
+							break;
 						}
 						alertDialog.cancel();
 					} catch (Exception e) {

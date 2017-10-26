@@ -5,22 +5,37 @@ Ezetap payments SDK can be integrated in both Android native and hybrid applicat
 ## How to include payments-sdk in your android application
 #### If you choose `.aar`:
 * Copy the `aar` file, available in the latest version in <a href=https://github.com/ezetap/android-payments-sdk/tree/master/release>release</a> folder, into `libs` folder under your project directory.
+
 * Add the below line in dependencies of your `build.gradle` file in your application.
 ```
   compile(name: 'ezetapandroidsdk_X', ext: 'aar') Note: 'X' in the 'ezetapandroidsdk_X' represents the version (ex: ezetapandroidsdk_2_0)
 ``` 
+
 * Add the below line in repositories section of your `build.gradle`
 ```
   flatDir {
       dirs 'libs'
   }
 ```
+
+* If you have set attribute "tools:node" in you manifest for your application node. Please set it as tools:node="merge" as shown below, it is needed to merge all the elements from our manifest.
+```
+ <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        tools:node="merge"
+        android:supportsRtl="true" >
+```
+
 #### If you choose `.jar`:
 * You can find SDK `jar` file in the <a href="https://github.com/ezetap/android-payments-sdk/tree/master/release">release </a> folder of this repository, Add the `jar` file in `libs` folder of your Native Android Project.
-* In the `manifest` file of your project add the permission `WRITE_EXTERNAL_STORAGE`, which looks like this-
+
+* In the `manifest` file of your project add the following permissions-
 ```xml
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.INTERNET" />
 ```
+
 * In the `manifest` file of your Android Project, add the below activity
 ```xml
   <activity android:name="com.eze.api.EzeAPIActivity"
@@ -56,8 +71,6 @@ Ezetap payments SDK can be integrated in both Android native and hybrid applicat
         <external-path name="ezetap-download" />
     </paths>
 ```
-
-
 
 # Native Android integration
 
@@ -114,4 +127,5 @@ There is a sample Android App inside the `sample` folder of this repository. You
 * You can find the documentation on how to create a Cordova plugin for Android <a href="https://github.com/ezetap/android-payments-sdk/tree/master/docs">here</a>.
 
 ><b>Note:</b> Refer to the <a href="https://github.com/ezetap/android-payments-sdk/blob/master/docs/Ezetap%20Cordova%20Integration.pdf" target="_blank">Ezetap Cordova Integration</a> document for Android Nougat support changes, these are highlighted in the guide.
+
 

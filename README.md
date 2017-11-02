@@ -18,6 +18,22 @@ Ezetap payments SDK can be integrated in both Android native and hybrid applicat
   }
 ```
 
+* Add the below provider in your project's `manifest` file inside application tag & replace your application ID in the place of `<Your application ID>`. Your app ID/package name can be found in your app's `manifest` file under package tag or in the `applicationId` tag of your Gradle file.
+
+```xml
+
+    <provider
+        android:name="com.ezetap.sdk.EzetapFileProvider"
+	    android:authorities="<Your application ID>.EzetapFileProvider"
+	    android:exported="false"
+	    android:grantUriPermissions="true" >
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/provider_paths" />
+	</provider>
+
+```
+
 * If you have set attribute "tools:node" in you manifest for your application node. Please set it as tools:node="merge" as shown below, it is needed to merge all the elements from our manifest.
 ```
  <application

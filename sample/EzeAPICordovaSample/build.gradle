@@ -19,43 +19,36 @@
 
 // GENERATED FILE! DO NOT EDIT!
 
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
+        google()
+        flatDir {
+            dirs 'libs'
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
     }
 
-    // Switch the Android Gradle plugin version requirement depending on the
-    // installed version of Gradle. This dependency is documented at
-    // http://tools.android.com/tech-docs/new-build-system/version-compatibility
-    // and https://issues.apache.org/jira/browse/CB-8143
-    if (gradle.gradleVersion >= "2.2") {
-        dependencies {
-            classpath 'com.android.tools.build:gradle:1.0.0+'
-        }
-    } else if (gradle.gradleVersion >= "2.1") {
-        dependencies {
-            classpath 'com.android.tools.build:gradle:0.14.0+'
-        }
-    } else {
-        dependencies {
-            classpath 'com.android.tools.build:gradle:0.12.0+'
-        }
-    }
 }
-
-// Allow plugins to declare Maven dependencies via build-extras.gradle.
 repositories {
-    mavenCentral()
     flatDir {
         dirs 'libs'
     }
 }
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.2.1'
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
 }
+
+//task wrapper(type: Wrapper) {
+//    gradleVersion = '2.2.1'
+//}
 
 // Configuration properties. Set these via environment variables, build-extras.gradle, or gradle.properties.
 // Refer to: http://www.gradle.org/docs/current/userguide/tutorial_this_and_that.html
@@ -111,7 +104,7 @@ if (ext.cdvCompileSdkVersion == null) {
     ext.cdvCompileSdkVersion = privateHelpers.getProjectTarget()
 }
 if (ext.cdvBuildToolsVersion == null) {
-    ext.cdvBuildToolsVersion = privateHelpers.findLatestInstalledBuildTools()
+    ext.cdvBuildToolsVersion = "26.0.2"
 }
 if (ext.cdvDebugSigningPropertiesFile == null && file('debug-signing.properties').exists()) {
     ext.cdvDebugSigningPropertiesFile = 'debug-signing.properties'
@@ -241,17 +234,17 @@ android {
     if (cdvDebugSigningPropertiesFile) {
         addSigningProps(cdvDebugSigningPropertiesFile, signingConfigs.debug)
     }
+    buildToolsVersion '26.0.2'
 }
 
 
 
 dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
+    compile fileTree(include: '*.jar', dir: 'libs')
     compile(name: 'ezetapandroidsdk_2_3', ext: 'aar')
     // SUB-PROJECT DEPENDENCIES START
-    debugCompile project(path: "CordovaLib", configuration: "debug")
-    releaseCompile project(path: "CordovaLib", configuration: "release")
     // SUB-PROJECT DEPENDENCIES END
+    implementation project(':CordovaLib')
 }
 
 def promptForReleaseKeyPassword() {

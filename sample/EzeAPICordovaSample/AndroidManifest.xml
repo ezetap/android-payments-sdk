@@ -29,7 +29,6 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
             android:label="Sample App"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.DeviceDefault.Light"
             android:windowSoftInputMode="adjustResize" >
             <intent-filter android:label="@string/launcher_name" >
@@ -43,7 +42,6 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
             android:label="Cordova Sample"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.DeviceDefault.Light"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -51,7 +49,6 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
             android:label="Native Sample"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.DeviceDefault.Light"
             android:windowSoftInputMode="adjustResize" />
         <provider

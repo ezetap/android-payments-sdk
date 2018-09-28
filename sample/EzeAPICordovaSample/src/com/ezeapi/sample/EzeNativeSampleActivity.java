@@ -145,7 +145,7 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 	private void doInitializeEzeTap() {
 		/**********************************************
 		 { 
-		   "demoAppKey": "your demo app key", 
+		   "demoAppKey": "your demo app key",
 		   "prodAppKey": "your prod app key", 
 		   "merchantName": "your merchant name", 
 		   "userName": "your user name", 
@@ -157,14 +157,14 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 		 **********************************************/
 		JSONObject jsonRequest = new JSONObject();
 		try {
-			jsonRequest.put("demoAppKey", "your demo app key");
-			jsonRequest.put("prodAppKey", "your prod app key");
-			jsonRequest.put("merchantName", "Merchant Name");
-			jsonRequest.put("userName", "Username");
+			jsonRequest.put("demoAppKey", "30e324b2-f5ac-4b7b-802d-f5daa3d98438");
+			jsonRequest.put("prodAppKey", "test");
+			jsonRequest.put("merchantName", "IOCLMIGRATION_92");
+			jsonRequest.put("userName", "Umesh123");
 			jsonRequest.put("currencyCode", "INR");
-			jsonRequest.put("appMode", "SANDBOX/PROD");
-			jsonRequest.put("captureSignature", "true/false");
-			jsonRequest.put("prepareDevice", "true/false");
+			jsonRequest.put("appMode", "DEMO");
+			jsonRequest.put("captureSignature", "true");
+			jsonRequest.put("prepareDevice", "false");
 			EzeAPI.initialize(this, REQUEST_CODE_INITIALIZE, jsonRequest);
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -586,6 +586,7 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
+		Log.d("SampleAppLogs", "requestCode = " + requestCode + "resultCode = " + resultCode);
 		try {
 			if (intent != null && intent.hasExtra("response")) {
 				Toast.makeText(this, intent.getStringExtra("response"), Toast.LENGTH_LONG).show();

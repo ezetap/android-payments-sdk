@@ -115,7 +115,7 @@ There is a sample Android App inside the `sample` folder of this repository. You
 4. `Ezehelper.js` will be your point of reference for Cordova Android SDK integration.
 
 * <b>IMPORTANT:</b> If your project's `targetSdkVersion` is higher or equal to 23(Android 6.0 Marshmallow) please add Android support library v4 to your Android project from <a href="http://developer.android.com/tools/support-library/setup.html">here.</a> The Android support libraries are not required if your project's `targetSdkVersion` is lesser than 23.
-* Good to go, please refer <a href="http://developers.ezetap.com/api/"> Ezetap API Portal</a> for API usage.
+* Good to go, please refer <a href="https://sandbox.ezetap.com/static/index.html"> Ezetap API Portal</a> for API usage.
 
 ><b>Note:</b> The EzeAPIActivity has to be configured with the same attributes as given above.
 

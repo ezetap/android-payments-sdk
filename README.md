@@ -1,9 +1,7 @@
 # android-payments-sdk
-Ezetap payments SDK can be integrated in both Android native and hybrid applications. Integrating the SDK will allow you to access Ezetap services in your application. SDK is available in 
-`jar` and `aar` formats. We recommend using `aar`, as you can get started right away!
+Ezetap payments SDK can be integrated in both Android native and hybrid applications. Integrating the SDK will allow you to access Ezetap services in your application. SDK is available in `aar` format.
 
 ## How to include payments-sdk in your android application
-#### If you choose `.aar`:
 * Copy the `aar` file, available in the latest version in <a href=https://github.com/ezetap/android-payments-sdk/tree/master/release>release</a> folder, into `libs` folder under your project directory.
 
 * Add the below line in dependencies of your `build.gradle` file in your application.
@@ -18,13 +16,13 @@ Ezetap payments SDK can be integrated in both Android native and hybrid applicat
   }
 ```
 
-* Add the below provider in your project's `manifest` file inside application tag & replace your application ID in the place of `<Your application ID>`. Your app ID/package name can be found in your app's `manifest` file under package tag or in the `applicationId` tag of your Gradle file.
+* Add the below provider in your project's `manifest` file under application tag
 
 ```xml
 
     <provider
         android:name="com.ezetap.sdk.EzetapFileProvider"
-	    android:authorities="<Your application ID>.EzetapFileProvider"
+	    android:authorities="${applicationId}.EzetapFileProvider"
 	    android:exported="false"
 	    android:grantUriPermissions="true" >
         <meta-data
@@ -43,32 +41,15 @@ Ezetap payments SDK can be integrated in both Android native and hybrid applicat
         android:supportsRtl="true" >
 ```
 
-#### If you choose `.jar`:
-* You can find SDK `jar` file in the <a href="https://github.com/ezetap/android-payments-sdk/tree/master/release">release </a> folder of this repository, Add the `jar` file in `libs` folder of your Native Android Project.
-
-* In the `manifest` file of your project add the following permissions-
-```xml
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.INTERNET" />
-```
-
-* In the `manifest` file of your Android Project, add the below activity
-```xml
-  <activity android:name="com.eze.api.EzeAPIActivity"
-      android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
-      android:screenOrientation="portrait"
-      android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-```
-
 * If you intend to support Android Nougat API Level 24 & above, follow these steps: 
 
-1. Add the below provider in your project's `manifest` file inside application tag & replace your application ID in the place of `<Your application ID>`. Your app ID/package name can be found in your app's `manifest` file under package tag or in the `applicationId` tag of your Gradle file.
+1. Add the below provider in your project's `manifest` file under application tag
 
 ```xml
 
     <provider
         android:name="com.ezetap.sdk.EzetapFileProvider"
-	    android:authorities="<Your application ID>.EzetapFileProvider"
+	    android:authorities="${applicationId}.EzetapFileProvider"
 	    android:exported="false"
 	    android:grantUriPermissions="true" >
         <meta-data

@@ -49,7 +49,9 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
             android:label="Native Sample"
             android:launchMode="singleTop"
-            android:theme="@android:style/Theme.DeviceDefault.Light"
+          android:screenOrientation="landscape"
+
+          android:theme="@android:style/Theme.DeviceDefault.Light"
             android:windowSoftInputMode="adjustResize" />
         <provider
             android:name="com.ezetap.sdk.EzetapFileProvider"
@@ -60,11 +62,17 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+        <activity
+          android:name="com.eze.api.EzeAPIActivity"
+          android:screenOrientation="portrait"
+          android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+          android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+          />
 
     </application>
 
     <uses-sdk
         android:minSdkVersion="15"
-        android:targetSdkVersion="25" />
+        android:targetSdkVersion="28" />
 
 </manifest>

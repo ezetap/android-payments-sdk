@@ -208,6 +208,47 @@
                 android:onClick="onClick"
                 android:text="Update"
                 android:textColor="@android:color/black" />
+            <Button
+              android:id="@+id/btnNormalEMI"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="5dp"
+              android:background="@drawable/round_corner"
+              android:elevation="2dp"
+              android:onClick="onClick"
+              android:text="Normal EMI"
+              android:textColor="@android:color/black" />
+            <Button
+              android:id="@+id/btnBrandEMI"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="5dp"
+              android:background="@drawable/round_corner"
+              android:elevation="2dp"
+              android:onClick="onClick"
+              android:text="Brand EMI"
+              android:textColor="@android:color/black" />
+            <Button
+              android:id="@+id/printReceipt"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="5dp"
+              android:background="@drawable/round_corner"
+              android:elevation="2dp"
+              android:onClick="onClick"
+              android:text="Print Receipt"
+              android:textColor="@android:color/black" />
+
+            <Button
+              android:id="@+id/printBitmap"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="5dp"
+              android:background="@drawable/round_corner"
+              android:elevation="2dp"
+              android:onClick="onClick"
+              android:text="Print Bitmap"
+              android:textColor="@android:color/black" />
 
             <Button
                 android:id="@+id/btnClose"

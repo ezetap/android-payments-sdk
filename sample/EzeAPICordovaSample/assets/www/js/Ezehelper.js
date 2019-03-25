@@ -12,6 +12,9 @@ var genericPayBtn = document.getElementById('btnGenericPay');
 var upiPayBtn = document.getElementById('btnUpiPay');
 var remotePayBtn = document.getElementById('btnRemotePay');
 var qrCodePayBtn = document.getElementById('btnQrCodePay');
+var normalEMIPayBtn = document.getElementById('btnNormalEMIPay');
+var brandEMIPayBtn = document.getElementById('btnBrandEMIPay');
+
 
 var payBtnTransHistory = document.getElementById('btnTransactionHistory');
 var btnVoidTransaction = document.getElementById('btnVoidTransaction');
@@ -48,7 +51,7 @@ initBtn.onclick = function(){
 		   "merchantName": "your merchant name", 
 		   "userName": "Your User Name",
 		   "currencyCode": "INR", 
-		   "appMode": "SANDBOX/PROD",
+		   "appMode": "DEMO/PROD",
 		   "captureSignature": "true/false",
 		   "prepareDevice": "true/false"
 	};
@@ -498,6 +501,89 @@ qrCodePayBtn.onclick = function(){
 				},
 		};
 		cordova.exec(ezeTapSuccessCallBack,ezeTapFailureCallBack,"EzeAPIPlugin","qrCodeTransaction",[Request]);
+	}else{
+		alert("Please fill up mandatory fields.");
+	}
+}
+
+btnNormalEMIPay.onclick = function(){
+	var refNum = $("#referenceNumber").val();
+	var amount = $("#amount").val();
+	if(refNum!="" && amount!=""){
+		var ezeTapSuccessCallBack = function(response){
+			$("#formData").hide();
+			$("#messageDiv").show();
+			$("#messageTag").text("Transaction successful");
+			transactionID = JSON.parse(response).result.txn.txnId;
+			$("#messageDesc").text("Tap here to do another transaction.\n\n"+JSON.stringify(response));
+		};
+		var ezeTapFailureCallBack = function(response){
+			$("#formData").hide();
+			$("#messageDiv").show();
+			$("#messageTag").text("Transaction failed");
+			$("#messageDesc").text("Tap here to do another transaction.\n\n"+JSON.stringify(response));
+		};
+
+		var Request = {
+				"amount": amount,
+				"options": {
+					"amountCashback": 0.0,
+					"amountTip": 0.0,
+					"references": {
+						"reference1":refNum
+					},
+					"customer": {
+						"name":$("#name").val(),
+						"mobileNo":$("#mobile").val(),
+						"email":$("#email").val()
+					}
+				},
+		};
+		cordova.exec(ezeTapSuccessCallBack,ezeTapFailureCallBack,"EzeAPIPlugin","normalEMI",[Request]);
+	}else{
+		alert("Please fill up mandatory fields.");
+	}
+}
+
+btnBrandEMIPay.onclick = function(){
+	var refNum = $("#referenceNumber").val();
+	var amount = $("#amount").val();
+	if(refNum!="" && amount!=""){
+		var ezeTapSuccessCallBack = function(response){
+			$("#formData").hide();
+			$("#messageDiv").show();
+			$("#messageTag").text("Transaction successful");
+			transactionID = JSON.parse(response).result.txn.txnId;
+			$("#messageDesc").text("Tap here to do another transaction.\n\n"+JSON.stringify(response));
+		};
+		var ezeTapFailureCallBack = function(response){
+			$("#formData").hide();
+			$("#messageDiv").show();
+			$("#messageTag").text("Transaction failed");
+			$("#messageDesc").text("Tap here to do another transaction.\n\n"+JSON.stringify(response));
+		};
+
+		var Request = {
+				"amount": amount,
+				"options": {
+					"amountCashback": 0.0,
+					"amountTip": 0.0,
+					"references": {
+						"reference1":refNum
+					},
+					"customer": {
+						"name":$("#name").val(),
+						"mobileNo":$("#mobile").val(),
+						"email":$("#email").val()
+					},
+					"productDetails":{
+					  "brand":$("#brand").val(),
+					  "SKUCode":$("#SKU").val(),
+					  "serial":$("#serial").val()
+					}
+				},
+		};
+		cordova.exec(ezeTapSuccessCallBack,ezeTapFailureCallBack,"EzeAPIPlugin","brandEMI",[Request]);
 	}else{
 		alert("Please fill up mandatory fields.");
 	}

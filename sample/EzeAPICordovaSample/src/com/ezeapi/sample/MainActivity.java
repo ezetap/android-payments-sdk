@@ -8,7 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainActivity extends Activity implements OnClickListener {
-	Button btnNative, btnCordova;
+	Button btnNative, btnCordova, btnSettings;
 	Intent intent = null;
 
 	@Override
@@ -19,6 +19,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		btnNative.setOnClickListener(this);
 		btnCordova = (Button) findViewById(R.id.btnCordova);
 		btnCordova.setOnClickListener(this);
+		btnSettings = (Button) findViewById(R.id.btnSettings);
+		btnSettings.setOnClickListener(this);
 	}
 
 	@Override
@@ -34,7 +36,11 @@ public class MainActivity extends Activity implements OnClickListener {
 					EzeCordovaSampleActivity.class);
 			startActivity(intent);
 			break;
-
+		case R.id.btnSettings:
+				intent = new Intent(MainActivity.this,
+					Setting.class);
+				startActivity(intent);
+				break;
 		default:
 			break;
 		}

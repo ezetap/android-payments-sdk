@@ -24,7 +24,15 @@
                 android:elevation="3dp"
                 android:text="Cordova App"
                 android:textColor="@android:color/black"/>
-    
+    <Button
+      android:id="@+id/btnSettings"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="5dp"
+      android:background="@drawable/round_corner"
+      android:elevation="3dp"
+      android:text="Settings"
+      android:textColor="@android:color/black"/>
     
 
 </LinearLayout>

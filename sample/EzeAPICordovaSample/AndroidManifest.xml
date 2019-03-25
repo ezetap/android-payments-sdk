@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ezeapi.sample"
     android:hardwareAccelerated="true"
-    android:versionCode="2"
-    android:versionName="2.0">
+    android:versionCode="5"
+    android:versionName="5.0">
 
     <supports-screens
         android:anyDensity="true"
@@ -49,10 +49,15 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
             android:label="Native Sample"
             android:launchMode="singleTop"
-          android:screenOrientation="landscape"
-
           android:theme="@android:style/Theme.DeviceDefault.Light"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+          android:name="com.ezeapi.sample.Setting"
+          android:configChanges="orientation"
+          android:label="Native Sample"
+          android:launchMode="singleTop"
+          android:theme="@android:style/Theme.DeviceDefault.Light"
+          android:windowSoftInputMode="adjustPan" />
         <provider
             android:name="com.ezetap.sdk.EzetapFileProvider"
             android:authorities="${applicationId}.EzetapFileProvider"

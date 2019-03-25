@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical">
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Enter API Key:"/>
+
+  <EditText
+    android:id="@+id/api_key"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:singleLine="true">
+    <requestFocus/>
+  </EditText>
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="30dp"
+    android:text="Enter Merchant Name: "/>
+
+  <EditText
+    android:id="@+id/merchant_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:singleLine="true"
+    android:ems="10"/>
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="30dp"
+    android:text="Enter User Name: "/>
+
+  <EditText
+    android:id="@+id/user_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:singleLine="true"
+    android:ems="10"/>
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="30dp"
+    android:text="Enter App Mode: "/>
+
+  <EditText
+    android:id="@+id/app_mode"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:singleLine="true"
+    android:hint="DEMO/PROD/QA/UAT/QA_RC"/>
+
+  <Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:onClick="setMerchant"
+    android:text="Set Merchant"/>
+
+</LinearLayout>

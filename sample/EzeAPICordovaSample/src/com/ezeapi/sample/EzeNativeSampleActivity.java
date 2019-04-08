@@ -725,7 +725,17 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 				}
 
 				break;
-
+			case REQUEST_CODE_PREPARE:
+				if (resultCode == RESULT_OK) {
+					JSONObject response = new JSONObject(intent.getStringExtra("response"));
+					response = response.getJSONObject("result");
+				} else if (resultCode == RESULT_CANCELED) {
+					JSONObject response = new JSONObject(intent.getStringExtra("response"));
+					response = response.getJSONObject("error");
+					String errorCode = response.getString("code");
+					String errorMessage = response.getString("message");
+				}
+				break;
 			default:
 				break;
 			}

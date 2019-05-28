@@ -3,7 +3,6 @@ package com.ezeapi.sample;
 import java.io.ByteArrayOutputStream;
 
 import com.ezetap.sdk.EzeConstants;
-import com.ezetap.sdk.EzetapApiConfig;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -76,7 +75,7 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nativesample);
 		img = (ImageView) findViewById(R.id.imgSign);
 		img.buildDrawingCache();

@@ -833,8 +833,7 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 			final EditText serviceFeeEditText = (EditText) customView.findViewById(R.id.serv_fee);
 			final EditText paymentByEditText = (EditText) customView.findViewById(R.id.pay_by);
 
-			if (REQUEST_CODE == REQUEST_CODE_CASH_BACK_TXN || REQUEST_CODE == REQUEST_CODE_CASH_AT_POS_TXN
-				|| REQUEST_CODE == REQUEST_CODE_BRAND_EMI || REQUEST_CODE == REQUEST_CODE_NORMAL_EMI) {
+			if (REQUEST_CODE == REQUEST_CODE_CASH_BACK_TXN || REQUEST_CODE == REQUEST_CODE_CASH_AT_POS_TXN) {
 				serviceFeeEditText.setVisibility(View.GONE);
 				paymentByEditText.setVisibility(View.GONE);
 				accountLabelEditTet.setVisibility(View.GONE);

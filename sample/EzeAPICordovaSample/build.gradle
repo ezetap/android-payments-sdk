@@ -241,7 +241,7 @@ android {
 
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
-    compile(name: 'ezetapandroidsdk_2_12', ext: 'aar')
+    compile(name: 'ezetapandroidsdk_2_13', ext: 'aar')
     // SUB-PROJECT DEPENDENCIES START
     // SUB-PROJECT DEPENDENCIES END
     implementation project(':CordovaLib')

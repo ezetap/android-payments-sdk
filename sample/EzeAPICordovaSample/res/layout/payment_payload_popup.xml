@@ -69,6 +69,40 @@
         android:singleLine="true"/>
 
       <EditText
+        android:id="@+id/ref2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:hint="External Reference 2"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:maxLines="1"
+        android:singleLine="true"/>
+
+      <EditText
+        android:id="@+id/ref3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:hint="External Reference 3"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:maxLines="1"
+        android:singleLine="true"/>
+
+      <EditText
+        android:id="@+id/text_external_refs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:lines="3"
+        android:hint="External Refs"
+        android:imeOptions="actionNext"
+        android:inputType="textMultiLine"
+        android:scrollbars="vertical"
+        android:singleLine="false"/>
+
+      <EditText
         android:id="@+id/user_mobile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

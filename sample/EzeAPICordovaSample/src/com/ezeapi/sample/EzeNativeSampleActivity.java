@@ -824,6 +824,9 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 			final EditText emailIdEditText = (EditText) customView.findViewById(R.id.user_email);
 			final EditText mobileNumberEditText = (EditText) customView.findViewById(R.id.user_mobile);
 			final EditText orderNumberEditText = (EditText) customView.findViewById(R.id.order_number);
+			final EditText externalReference2 = (EditText) customView.findViewById(R.id.ref2);
+			final EditText externalReference3 = (EditText) customView.findViewById(R.id.ref3);
+			final EditText externalReferences = (EditText) customView.findViewById(R.id.text_external_refs);
 			final EditText payableAmountEditText = (EditText) customView.findViewById(R.id.payable_amount);
 			final EditText cashBackAmountEditText = (EditText) customView.findViewById(R.id.cashback_amount);
             final EditText productBrandEditText = (EditText) customView.findViewById(R.id.product_brand);
@@ -871,13 +874,15 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 
 						// Building References Object
 						jsonReferences.put("reference1", orderNumberEditText.getText().toString().trim());
-						jsonReferences.put("reference2", orderNumberEditText.getText().toString().trim());
-						jsonReferences.put("reference3", orderNumberEditText.getText().toString().trim());
+						jsonReferences.put("reference2", externalReference2.getText().toString().trim());
+						jsonReferences.put("reference3", externalReference3.getText().toString().trim());
 
 						// Passing Additional References
 						JSONArray array = new JSONArray();
-						array.put("addRef_xx1");
-						array.put("addRef_xx2");
+						String[] externalRefs = externalReferences.getText().toString().split("\n");
+						for (String externalRef : externalRefs) {
+							array.put(externalRef);
+						}
 						jsonReferences.put("additionalReferences", array);
 
 						// Building Optional params Object

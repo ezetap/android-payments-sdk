@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ezeapi.sample"
     android:hardwareAccelerated="true"
-    android:versionCode="11"
-    android:versionName="5.6">
+    android:versionCode="12"
+    android:versionName="5.7">
 
     <supports-screens
         android:anyDensity="true"

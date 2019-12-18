@@ -1,5 +1,6 @@
 package com.ezeapi.sample;
 
+import android.widget.TextView;
 import java.io.ByteArrayOutputStream;
 
 import com.ezetap.sdk.EzeConstants;
@@ -701,6 +702,9 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 			if (intent != null && intent.hasExtra("response")) {
 				Toast.makeText(this, intent.getStringExtra("response"), Toast.LENGTH_LONG).show();
 				Log.d("SampleAppLogs", intent.getStringExtra("response"));
+				TextView resultView = (TextView) findViewById(R.id.resultView);
+				resultView.setVisibility(View.VISIBLE);
+				resultView.setText(intent.getStringExtra("response"));
 			}
 			switch (requestCode) {
 			case REQUEST_CODE_UPI:

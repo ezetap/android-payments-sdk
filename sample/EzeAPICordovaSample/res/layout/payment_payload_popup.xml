@@ -193,6 +193,59 @@
         android:maxLines="1"
         android:singleLine="true"/>
 
+      <EditText
+          android:id="@+id/merchant_phone_number"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="16dp"
+          android:hint="Enter merchant mobile number"
+          android:imeOptions="actionDone"
+          android:inputType="number"
+          android:maxLength="10"
+          android:maxLines="1"
+          android:singleLine="true"/>
+      <EditText
+          android:id="@+id/merchant_email"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="16dp"
+          android:hint="Enter merchant email id"
+          android:imeOptions="actionDone"
+          android:maxLines="1"
+          android:singleLine="true"/>
+      <EditText
+          android:id="@+id/issueType"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="16dp"
+          android:hint="Enter Issue Type"
+          android:imeOptions="actionDone"
+          android:maxLength="10"
+          android:maxLines="1"
+          android:singleLine="true"/>
+      <EditText
+          android:id="@+id/issueInfo"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="16dp"
+          android:hint="Enter Issue Info/comments"
+          android:imeOptions="actionDone"
+          android:maxLength="10"
+          android:maxLines="1"
+          android:singleLine="true"/>
+      <EditText
+          android:id="@+id/tags"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="16dp"
+          android:maxLines="3"
+          android:hint="Enter Issue tags"
+          android:visibility="gone"
+          android:imeOptions="actionNext"
+          android:inputType="textMultiLine"
+          android:scrollbars="vertical"
+          android:singleLine="false"/>
+
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

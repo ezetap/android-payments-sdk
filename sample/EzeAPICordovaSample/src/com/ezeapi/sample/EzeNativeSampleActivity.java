@@ -59,6 +59,7 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
     private final int REQUEST_CODE_BRAND_EMI = 10022;
 	private final int REQUEST_CODE_PRINT_RECEIPT = 10021;
 	private final int REQUEST_CODE_PRINT_BITMAP = 10022;
+	private final int REQUEST_CODE_SERVICE_REQUEST = 10023;
 
 	/**
 	 * The Base64 Image bitmap string for attach e-signature
@@ -171,7 +172,10 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 			case REQUEST_CODE_PRINT_RECEIPT:
 				printReceipt();
 				break;
-		case R.id.btnClose:
+			case R.id.btnServiceRequest:
+				openPaymentPayloadPopup(REQUEST_CODE_SERVICE_REQUEST);
+				break;
+			case R.id.btnClose:
 			doCloseEzetap();
 			break;
 		default:
@@ -578,7 +582,7 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 		 *********************************/
 		JSONObject jsonRequest = new JSONObject();
 		try {
-			jsonRequest.put("agentName", "Enter your user name");
+			jsonRequest.put("agentName",Setting.getPrefs(USER_NAME, this));
 			EzeAPI.searchTransaction(this, REQUEST_CODE_SEARCH, jsonRequest);
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -839,8 +843,34 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 			final EditText accountLabelEditTet = (EditText) customView.findViewById(R.id.acc_lab);
 			final EditText serviceFeeEditText = (EditText) customView.findViewById(R.id.serv_fee);
 			final EditText paymentByEditText = (EditText) customView.findViewById(R.id.pay_by);
+			final EditText merchantPhonenumberEditText = (EditText) customView.findViewById(R.id.merchant_phone_number);
+			final EditText IssueType = (EditText) customView.findViewById(R.id.issueType);
+			final EditText IssueInfo = (EditText) customView.findViewById(R.id.issueInfo);
+			final EditText tags = (EditText) customView.findViewById(R.id.tags);
+			final EditText merchantEmailId = (EditText) customView.findViewById(R.id.merchant_email);
 
-			if (REQUEST_CODE == REQUEST_CODE_CASH_BACK_TXN || REQUEST_CODE == REQUEST_CODE_CASH_AT_POS_TXN) {
+			if(REQUEST_CODE == REQUEST_CODE_SERVICE_REQUEST){
+				customerNameEditText.setVisibility(View.GONE);
+				emailIdEditText.setVisibility(View.GONE);
+				IssueType.setVisibility(View.VISIBLE);
+				IssueInfo.setVisibility(View.VISIBLE);
+				tags.setVisibility(View.VISIBLE);
+				mobileNumberEditText.setVisibility(View.GONE);
+				orderNumberEditText.setVisibility(View.GONE);
+				payableAmountEditText.setVisibility(View.GONE);
+				cashBackAmountEditText.setVisibility(View.GONE);
+				productBrandEditText.setVisibility(View.GONE);
+				productSerialEditText.setVisibility(View.GONE);
+				accountLabelEditTet.setVisibility(View.GONE);
+				serviceFeeEditText.setVisibility(View.GONE);
+				paymentByEditText.setVisibility(View.GONE);
+				productCodeEditText.setVisibility(View.GONE);
+				externalReference2.setVisibility(View.GONE);
+				externalReference3.setVisibility(View.GONE);
+				externalReferences.setVisibility(View.GONE);
+			}
+			if (REQUEST_CODE == REQUEST_CODE_CASH_BACK_TXN || REQUEST_CODE == REQUEST_CODE_CASH_AT_POS_TXN
+					|| REQUEST_CODE == REQUEST_CODE_BRAND_EMI || REQUEST_CODE == REQUEST_CODE_NORMAL_EMI) {
 				serviceFeeEditText.setVisibility(View.GONE);
 				paymentByEditText.setVisibility(View.GONE);
 				accountLabelEditTet.setVisibility(View.GONE);
@@ -860,9 +890,9 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 			confirmButton.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					if (orderNumberEditText.getText().toString().equalsIgnoreCase("")
+					if ((REQUEST_CODE != REQUEST_CODE_SERVICE_REQUEST) && (orderNumberEditText.getText().toString().equalsIgnoreCase("")
 						|| payableAmountEditText.getText().toString().equalsIgnoreCase("")
-						&& (REQUEST_CODE != REQUEST_CODE_CASH_AT_POS_TXN)) {
+						&& (REQUEST_CODE != REQUEST_CODE_CASH_AT_POS_TXN))) {
 						displayToast(mandatoryErrMsg);
 						return;
 					}
@@ -871,6 +901,16 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 						JSONObject jsonOptionalParams = new JSONObject();
 						JSONObject jsonReferences = new JSONObject();
 						JSONObject jsonCustomer = new JSONObject();
+						jsonRequest.put("issueType",IssueType.getText().toString().trim());
+						jsonRequest.put("issueInfo",IssueInfo.getText().toString().trim());
+						JSONArray tagArray = new JSONArray();
+						String[] tag = tags.getText().toString().split("\n");
+						for (String t : tag) {
+							tagArray.put(t);
+						}
+						jsonRequest.put("tags",tagArray);
+						jsonRequest.put("merchant_phone_number",merchantPhonenumberEditText.getText().toString().trim());
+						jsonRequest.put("merchant_email",merchantEmailId.getText().toString().trim());
 						// Building Customer Object
 						jsonCustomer.put("name", customerNameEditText.getText().toString().trim());
 						jsonCustomer.put("mobileNo", mobileNumberEditText.getText().toString().trim());
@@ -995,6 +1035,9 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
                         case REQUEST_CODE_BRAND_EMI:
                             doBrandEMITxn(jsonRequest);
                             break;
+                            case REQUEST_CODE_SERVICE_REQUEST:
+								callServiceRequest(jsonRequest);
+								break;
 						}
 						alertDialog.cancel();
 					} catch (Exception e) {
@@ -1074,6 +1117,11 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 
 			e.printStackTrace();
 		}
+	}
+
+	private void callServiceRequest(JSONObject requestObject){
+		System.out.println("CallServiceRequest "+requestObject.toString());
+		EzeAPI.serviceRequest(this,REQUEST_CODE_SERVICE_REQUEST,requestObject);
 	}
 
 	@Override

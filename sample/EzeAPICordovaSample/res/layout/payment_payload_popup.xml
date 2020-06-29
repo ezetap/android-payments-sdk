@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@android:color/white"
@@ -9,11 +8,11 @@
   <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
     android:background="@color/colorPrimary"
+    android:padding="16dp"
     android:text="Payment details"
     android:textColor="@android:color/white"
-    android:textSize="21sp"/>
+    android:textSize="21sp" />
   <ScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -26,225 +25,225 @@
         android:id="@+id/order_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:hint="Enter order number"
         android:imeOptions="actionNext"
         android:inputType="number"
         android:maxLength="10"
         android:maxLines="1"
-        android:singleLine="true"/>
+        android:padding="16dp"
+        android:singleLine="true" />
 
       <EditText
         android:id="@+id/payable_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:hint="Enter payable amount"
         android:imeOptions="actionNext"
         android:inputType="numberDecimal"
         android:maxLength="10"
         android:maxLines="1"
-        android:singleLine="true"/>
+        android:padding="16dp"
+        android:singleLine="true" />
       <EditText
         android:id="@+id/cashback_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:hint="Enter cash back amount"
         android:imeOptions="actionNext"
         android:inputType="numberDecimal"
         android:maxLength="10"
         android:maxLines="1"
-        android:singleLine="true"/>
+        android:padding="16dp"
+        android:singleLine="true" />
 
       <EditText
         android:id="@+id/user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:hint="Enter customer name"
         android:imeOptions="actionNext"
         android:inputType="text"
         android:maxLines="1"
-        android:singleLine="true"/>
+        android:padding="16dp"
+        android:singleLine="true" />
 
       <EditText
         android:id="@+id/ref2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:hint="External Reference 2"
         android:imeOptions="actionNext"
         android:inputType="text"
         android:maxLines="1"
-        android:singleLine="true"/>
+        android:padding="16dp"
+        android:singleLine="true" />
 
       <EditText
         android:id="@+id/ref3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:hint="External Reference 3"
         android:imeOptions="actionNext"
         android:inputType="text"
         android:maxLines="1"
-        android:singleLine="true"/>
+        android:padding="16dp"
+        android:singleLine="true" />
 
       <EditText
         android:id="@+id/text_external_refs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:lines="3"
         android:hint="External Refs"
         android:imeOptions="actionNext"
         android:inputType="textMultiLine"
+        android:lines="3"
+        android:padding="16dp"
         android:scrollbars="vertical"
-        android:singleLine="false"/>
+        android:singleLine="false" />
 
       <EditText
         android:id="@+id/user_mobile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:hint="Enter customer mobile number"
         android:imeOptions="actionNext"
         android:inputType="number"
         android:maxLength="10"
         android:maxLines="1"
-        android:singleLine="true"/>
+        android:padding="16dp"
+        android:singleLine="true" />
 
       <EditText
         android:id="@+id/user_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:hint="Enter customer email id"
         android:imeOptions="actionDone"
         android:inputType="textEmailAddress"
         android:maxLines="1"
-        android:singleLine="true"/>
+        android:padding="16dp"
+        android:singleLine="true" />
       <EditText
         android:id="@+id/product_brand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:hint="Enter Product Brand"
         android:imeOptions="actionDone"
         android:inputType="text"
         android:maxLines="1"
+        android:padding="16dp"
         android:singleLine="true"
         android:text="NOKIA"
-        android:visibility="gone"/>
+        android:visibility="gone" />
       <EditText
         android:id="@+id/product_sku"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:hint="Enter Product SKU"
         android:imeOptions="actionDone"
         android:inputType="text"
         android:maxLines="1"
+        android:padding="16dp"
         android:singleLine="true"
         android:text="Nokia6MB"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
       <EditText
         android:id="@+id/product_serial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:hint="Enter Product Serial"
         android:imeOptions="actionDone"
         android:inputType="text"
         android:maxLines="1"
+        android:padding="16dp"
         android:singleLine="true"
-        android:visibility="gone"/>
+        android:visibility="gone" />
       <EditText
         android:id="@+id/acc_lab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:hint="Enter Account Label"
         android:imeOptions="actionDone"
         android:inputType="textEmailAddress"
         android:maxLines="1"
-        android:singleLine="true"/>
+        android:padding="16dp"
+        android:singleLine="true" />
 
       <EditText
         android:id="@+id/serv_fee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:hint="Enter service fee amount"
         android:imeOptions="actionDone"
         android:inputType="numberDecimal"
         android:maxLines="1"
-        android:singleLine="true"/>
+        android:padding="16dp"
+        android:singleLine="true" />
 
       <EditText
         android:id="@+id/pay_by"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
         android:hint="Enter payment by"
         android:imeOptions="actionDone"
         android:inputType="textEmailAddress"
         android:maxLines="1"
-        android:singleLine="true"/>
+        android:padding="16dp"
+        android:singleLine="true" />
 
       <EditText
-          android:id="@+id/merchant_phone_number"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="16dp"
-          android:hint="Enter merchant mobile number"
-          android:imeOptions="actionDone"
-          android:inputType="number"
-          android:maxLength="10"
-          android:maxLines="1"
-          android:singleLine="true"/>
+        android:id="@+id/merchant_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter merchant mobile number"
+        android:imeOptions="actionDone"
+        android:inputType="number"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:padding="16dp"
+        android:singleLine="true" />
       <EditText
-          android:id="@+id/merchant_email"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="16dp"
-          android:hint="Enter merchant email id"
-          android:imeOptions="actionDone"
-          android:maxLines="1"
-          android:singleLine="true"/>
+        android:id="@+id/merchant_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter merchant email id"
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:padding="16dp"
+        android:singleLine="true" />
       <EditText
-          android:id="@+id/issueType"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="16dp"
-          android:hint="Enter Issue Type"
-          android:imeOptions="actionDone"
-          android:maxLength="10"
-          android:maxLines="1"
-          android:singleLine="true"/>
+        android:id="@+id/issueType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Issue Type"
+        android:imeOptions="actionDone"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:padding="16dp"
+        android:singleLine="true" />
       <EditText
-          android:id="@+id/issueInfo"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="16dp"
-          android:hint="Enter Issue Info/comments"
-          android:imeOptions="actionDone"
-          android:maxLength="10"
-          android:maxLines="1"
-          android:singleLine="true"/>
+        android:id="@+id/issueInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Issue Info/comments"
+        android:imeOptions="actionDone"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:padding="16dp"
+        android:singleLine="true" />
       <EditText
-          android:id="@+id/tags"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="16dp"
-          android:maxLines="3"
-          android:hint="Enter Issue tags"
-          android:visibility="gone"
-          android:imeOptions="actionNext"
-          android:inputType="textMultiLine"
-          android:scrollbars="vertical"
-          android:singleLine="false"/>
+        android:id="@+id/tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Issue tags"
+        android:imeOptions="actionNext"
+        android:inputType="textMultiLine"
+        android:maxLines="3"
+        android:padding="16dp"
+        android:scrollbars="vertical"
+        android:singleLine="false"
+        android:visibility="gone" />
 
       <LinearLayout
         android:layout_width="match_parent"
@@ -255,24 +254,24 @@
           android:id="@+id/cancel_button"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_weight="1"
           android:layout_alignParentBottom="true"
-          android:padding="16dp"
+          android:layout_weight="1"
           android:background="@android:color/transparent"
+          android:padding="16dp"
           android:text="Cancel"
           android:textAllCaps="false"
-          android:textColor="@android:color/black"/>
+          android:textColor="@android:color/black" />
         <Button
           android:id="@+id/confirm_button"
           style="android:buttonStyle"
-          android:textStyle="bold"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_weight="1"
-          android:padding="16dp"
           android:background="@android:color/transparent"
+          android:padding="16dp"
           android:text="Ok"
-          android:textColor="@android:color/black"/>
+          android:textColor="@android:color/black"
+          android:textStyle="bold" />
       </LinearLayout>
     </LinearLayout>
   </ScrollView>

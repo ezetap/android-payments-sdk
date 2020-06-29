@@ -1,290 +1,323 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context="com.ezeapi.sample.EzeNativeSampleActivity">
+
+  <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ezeapi.sample.EzeNativeSampleActivity">
+    android:scrollbars="vertical">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical">
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+      <Button
+        android:id="@+id/btnInitialize"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Initialize"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnInitialize"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Initialize"
-                android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnPrepare"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Prepare Device"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnPrepare"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Prepare Device"
-                android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnWalletTxn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Wallet Transaction"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnWalletTxn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Wallet Transaction"
-                android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnChequeTxn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Cheque Payment"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnChequeTxn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Cheque Payment"
-                android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnSale"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Card Transaction - Sale"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnSale"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Card Transaction - Sale"
-                android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnCashback"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Card Transaction - Cashback"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnCashback"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Card Transaction - Cashback"
-                android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnCashAtPOS"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Card Transaction - Cash@POS"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnCashAtPOS"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Card Transaction - Cash@POS"
-                android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnCashTxn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Cash Transaction"
+        android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnUPITxn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="UPI Transaction"
+        android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnQRCodeTxn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="QR Code Transaction"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnCashTxn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Cash Transaction"
-                android:textColor="@android:color/black" />
-            <Button
-                android:id="@+id/btnUPITxn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="UPI Transaction"
-                android:textColor="@android:color/black" />
-            <Button
-                android:id="@+id/btnQRCodeTxn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="QR Code Transaction"
-                android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnPay"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Pay"
+        android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnRemotePay"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Remote Pay"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnPay"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Pay"
-                android:textColor="@android:color/black" />
-            <Button
-                android:id="@+id/btnRemotePay"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Remote Pay"
-                android:textColor="@android:color/black" />
+      <!--<Button
+        android:id="@+id/btnLoadBal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Load Balance"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnSearchTxn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Search Transaction"
-                android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnUpdateBal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Update Balance"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnVoidTxn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Void Transaction"
-                android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnBalCheck"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Check Balance"
+        android:textColor="@android:color/black" />-->
 
-            <Button
-                android:id="@+id/btnCheckIncompleteTxn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Check Incomplete Txn"
-                android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnSearchTxn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Search Transaction"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnGetTxnDetails"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Get Transaction Detail"
-                android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnVoidTxn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Void Transaction"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnAttachSignature"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Attach Signature"
-                android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnCheckIncompleteTxn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Check Incomplete Txn"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnUpdate"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Update"
-                android:textColor="@android:color/black" />
-            <Button
-              android:id="@+id/btnNormalEMI"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="5dp"
-              android:background="@drawable/round_corner"
-              android:elevation="2dp"
-              android:onClick="onClick"
-              android:text="Normal EMI"
-              android:textColor="@android:color/black" />
-            <Button
-              android:id="@+id/btnBrandEMI"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="5dp"
-              android:background="@drawable/round_corner"
-              android:elevation="2dp"
-              android:onClick="onClick"
-              android:text="Brand EMI"
-              android:textColor="@android:color/black" />
-            <Button
-              android:id="@+id/printReceipt"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="5dp"
-              android:background="@drawable/round_corner"
-              android:elevation="2dp"
-              android:onClick="onClick"
-              android:text="Print Receipt"
-              android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnGetTxnDetails"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Get Transaction Detail"
+        android:textColor="@android:color/black" />
 
-            <Button
-              android:id="@+id/printBitmap"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="5dp"
-              android:background="@drawable/round_corner"
-              android:elevation="2dp"
-              android:onClick="onClick"
-              android:text="Print Bitmap"
-              android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnAttachSignature"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Attach Signature"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnServiceRequest"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Request Call Back"
-                android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Update"
+        android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnNormalEMI"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Normal EMI"
+        android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/btnBrandEMI"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Brand EMI"
+        android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/printReceipt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Print Receipt"
+        android:textColor="@android:color/black" />
 
-            <Button
-                android:id="@+id/btnClose"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_corner"
-                android:elevation="2dp"
-                android:onClick="onClick"
-                android:text="Close"
-                android:textColor="@android:color/black" />
+      <Button
+        android:id="@+id/printBitmap"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Print Bitmap"
+        android:textColor="@android:color/black" />
 
-            <ImageView
-                android:id="@+id/imgSign"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ezenew" />
+      <Button
+        android:id="@+id/btnServiceRequest"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Request Call Back"
+        android:textColor="@android:color/black" />
 
-          <TextView
-            android:id="@+id/resultView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"/>
-        </LinearLayout>
+      <Button
+        android:id="@+id/btnClose"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Close"
+        android:textColor="@android:color/black" />
 
-    </ScrollView>
+      <ImageView
+        android:id="@+id/imgSign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ezenew" />
+
+      <TextView
+        android:id="@+id/resultView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+    </LinearLayout>
+
+  </ScrollView>
 </RelativeLayout>

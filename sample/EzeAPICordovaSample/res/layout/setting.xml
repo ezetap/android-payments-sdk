@@ -4,64 +4,78 @@
   android:layout_height="match_parent"
   android:orientation="vertical">
 
-  <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Enter API Key:"/>
-
-  <EditText
-    android:id="@+id/api_key"
+  <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:singleLine="true">
-    <requestFocus/>
-  </EditText>
+    android:layout_height="wrap_content">
 
-  <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:paddingTop="30dp"
-    android:text="Enter Merchant Name: "/>
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
 
-  <EditText
-    android:id="@+id/merchant_name"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:singleLine="true"
-    android:ems="10"/>
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter API Key:" />
 
-  <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:paddingTop="30dp"
-    android:text="Enter User Name: "/>
+      <EditText
+        android:id="@+id/api_key"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:singleLine="true">
+        <requestFocus />
+      </EditText>
 
-  <EditText
-    android:id="@+id/user_name"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:singleLine="true"
-    android:ems="10"/>
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:text="Enter Merchant Name: " />
 
-  <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:paddingTop="30dp"
-    android:text="Enter App Mode: "/>
+      <EditText
+        android:id="@+id/merchant_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:singleLine="true" />
 
-  <EditText
-    android:id="@+id/app_mode"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:singleLine="true"
-    android:hint="DEMO1/DEMO/PROD/QA/UAT/QA_RC"/>
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:text="Enter User Name: " />
 
-  <Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:onClick="setMerchant"
-    android:text="Set Merchant"/>
+      <EditText
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:singleLine="true" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:text="Enter App Mode: " />
+
+      <EditText
+        android:id="@+id/app_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="DEMO1/DEMO/PROD/QA/UAT/QA_RC"
+        android:singleLine="true" />
+
+      <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="setMerchant"
+        android:text="Set Merchant" />
+
+    </LinearLayout>
+
+
+  </ScrollView>
 
 </LinearLayout>

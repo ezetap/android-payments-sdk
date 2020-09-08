@@ -3,8 +3,8 @@
   xmlns:tools="http://schemas.android.com/tools"
   package="com.ezeapi.sample"
   android:hardwareAccelerated="true"
-  android:versionCode="14"
-  android:versionName="5.9"
+  android:versionCode="15"
+  android:versionName="6.0"
   tools:ignore="GradleOverrides">
 
   <supports-screens

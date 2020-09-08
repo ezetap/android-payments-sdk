@@ -208,6 +208,7 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
                 jsonRequest.put("appMode", Setting.config.getAppMode());
                 jsonRequest.put("captureSignature", "true");
                 jsonRequest.put("prepareDevice", "false");
+                jsonRequest.put("captureReceipt", "false");
             } catch (JSONException e) {
                 e.printStackTrace();
             }

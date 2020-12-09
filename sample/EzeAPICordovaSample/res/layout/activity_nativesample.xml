@@ -217,6 +217,17 @@
         android:background="@drawable/round_corner"
         android:elevation="2dp"
         android:onClick="onClick"
+        android:text="Get Transaction Detail with Stop"
+        android:textColor="@android:color/black" />
+
+      <Button
+        android:id="@+id/btnGetTxnDetail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
         android:text="Get Transaction Detail"
         android:textColor="@android:color/black" />
 
@@ -292,6 +303,17 @@
         android:elevation="2dp"
         android:onClick="onClick"
         android:text="Request Call Back"
+        android:textColor="@android:color/black" />
+
+      <Button
+        android:id="@+id/btnStopPay"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner"
+        android:elevation="2dp"
+        android:onClick="onClick"
+        android:text="Stop Pay"
         android:textColor="@android:color/black" />
 
       <Button

@@ -102,6 +102,18 @@
         android:singleLine="false" />
 
       <EditText
+        android:id="@+id/text_stop_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Txn List"
+        android:imeOptions="actionNext"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:padding="16dp"
+        android:scrollbars="vertical"
+        android:singleLine="false" />
+
+      <EditText
         android:id="@+id/user_mobile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

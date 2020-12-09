@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +28,8 @@ import android.widget.Toast;
 import com.eze.api.EzeAPI;
 import com.ezetap.sdk.EzeConstants;
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,6 +63,8 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
     private final int REQUEST_CODE_PRINT_RECEIPT = 10022;
     private final int REQUEST_CODE_PRINT_BITMAP = 10023;
     private final int REQUEST_CODE_SERVICE_REQUEST = 10024;
+    private final int REQUEST_CODE_STOP_PAYMENT = 10025;
+    private final int REQUEST_CODE_GET_TXN_DETAIL_WITHOUT_STOP = 10026;
 
     /**
      * The Base64 Image bitmap string for attach e-signature
@@ -146,7 +151,11 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
                 doCheckIncompleteTxn();
                 break;
             case R.id.btnGetTxnDetails:
-                openTXNIdEnterPopup(REQUEST_CODE_GET_TXN_DETAIL);
+//                openTXNIdEnterPopup(REQUEST_CODE_GET_TXN_DETAIL);
+                openPaymentPayloadPopup(REQUEST_CODE_GET_TXN_DETAIL);
+                break;
+            case R.id.btnGetTxnDetail:
+                openPaymentPayloadPopup(REQUEST_CODE_GET_TXN_DETAIL_WITHOUT_STOP);
                 break;
             case R.id.btnUPITxn:
                 openPaymentPayloadPopup(REQUEST_CODE_UPI);
@@ -174,6 +183,9 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
                 break;
             case R.id.btnClose:
                 doCloseEzetap();
+                break;
+            case R.id.btnStopPay:
+                openPaymentPayloadPopup(REQUEST_CODE_STOP_PAYMENT);
                 break;
             default:
                 break;
@@ -596,9 +608,24 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
 			EzeAPI.voidTransaction(this, REQUEST_CODE_VOID,
 				strTxnId);// pass your transaction id value here
 		} else {
-			displayToast("Inorrect txn Id, please make a Txn.");
+			displayToast("Incorrect txn Id, please enter TxnId.");
 		}
 
+    }
+
+    private void doStopPayment(JSONObject jsonObject) {
+        JSONObject txnIDs = new JSONObject();
+        try {
+            if (jsonObject.has("txnIdArray") && jsonObject.getJSONArray("txnIdArray").length() > 0) {
+                JSONArray txnIds = jsonObject.getJSONArray("txnIdArray");
+                txnIDs.put("txnIds", txnIds);
+                EzeAPI.stopPayment(this, REQUEST_CODE_STOP_PAYMENT,txnIDs);
+            } else {
+                displayToast("Incorrect txn Id, please enter TxnId.");
+            }
+        } catch (JSONException e) {
+            displayToast("Incorrect txn Id, please enter TxnId.");
+        }
     }
 
     /**
@@ -675,13 +702,25 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
     /**
      * Retrieve the details of a transaction given a transaction Id
      */
-    private void doGetTxnDetails() {
-        if (!strTxnId.equals(null)) {
+    private void doGetTxnDetails(JSONObject jsonObject) {
+        /*if (!strTxnId.equals(null)) {
             EzeAPI.getTransaction(this, REQUEST_CODE_GET_TXN_DETAIL,
                 strTxnId);// pass your reference id value here
         } else {
-            displayToast("Inorrect txn Id, please pass txnId");
+            displayToast("Incorrect reference id, please pass correct ref id");
+        }*/
+        try {
+            jsonObject.put("doStopPayment", true);
+            EzeAPI.getTransaction(this, REQUEST_CODE_GET_TXN_DETAIL,
+                jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+    }
+
+    private void doGetTxnDetailsWithoutStop(JSONObject jsonObject) {
+        EzeAPI.getTransaction(this, REQUEST_CODE_GET_TXN_DETAIL,
+            jsonObject);
     }
 
     /**
@@ -784,6 +823,9 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
             });
 
             final EditText txnIdEditText = (EditText) customView.findViewById(R.id.txn_id_number);
+            /*txnIdEditText.setLines(5);
+            txnIdEditText.setSingleLine(false);
+            txnIdEditText.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);*/
             Button confirmButton = (Button) customView.findViewById(R.id.confirm_button);
             confirmButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -793,9 +835,9 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
                         case REQUEST_CODE_VOID:
                             doVoidTxn();
                             break;
-                        case REQUEST_CODE_GET_TXN_DETAIL:
+                        /*case REQUEST_CODE_GET_TXN_DETAIL:
                             doGetTxnDetails();
-                            break;
+                            break;*/
                         case REQUEST_CODE_ATTACH_SIGN:
                             doAttachSignature();
                             break;
@@ -862,6 +904,8 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
             final EditText tags = (EditText) customView.findViewById(R.id.tags);
             final EditText merchantEmailId = (EditText) customView
                 .findViewById(R.id.merchant_email);
+            final EditText stopPayList = (EditText) customView
+                .findViewById(R.id.text_stop_pay);
 
             if (REQUEST_CODE == REQUEST_CODE_SERVICE_REQUEST) {
                 customerNameEditText.setVisibility(View.GONE);
@@ -905,12 +949,15 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
             confirmButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if ((REQUEST_CODE != REQUEST_CODE_SERVICE_REQUEST) && (
-                        orderNumberEditText.getText().toString().equalsIgnoreCase("")
-                            || payableAmountEditText.getText().toString().equalsIgnoreCase("")
-                            && (REQUEST_CODE != REQUEST_CODE_CASH_AT_POS_TXN))) {
-                        displayToast(mandatoryErrMsg);
-                        return;
+                    if (REQUEST_CODE != REQUEST_CODE_GET_TXN_DETAIL && REQUEST_CODE != REQUEST_CODE_STOP_PAYMENT &&
+                    REQUEST_CODE != REQUEST_CODE_GET_TXN_DETAIL_WITHOUT_STOP) {
+                        if ((REQUEST_CODE != REQUEST_CODE_SERVICE_REQUEST) && (
+                            orderNumberEditText.getText().toString().equalsIgnoreCase("")
+                                || payableAmountEditText.getText().toString().equalsIgnoreCase("")
+                                && (REQUEST_CODE != REQUEST_CODE_CASH_AT_POS_TXN))) {
+                            displayToast(mandatoryErrMsg);
+                            return;
+                        }
                     }
                     try {
                         JSONObject jsonRequest = new JSONObject();
@@ -950,6 +997,16 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
                             array.put(externalRef);
                         }
                         jsonReferences.put("additionalReferences", array);
+
+                        /*String[] txnIdArray = stopPayList.getText().toString().split("\n");
+                        ArrayList<String> txnId = new ArrayList<String>(Arrays.asList(txnIdArray));
+                        jsonRequest.put("txnIdArray", txnId);*/
+                        JSONArray txnId = new JSONArray();
+                        String[] txnIdArray = stopPayList.getText().toString().split("\n");
+                        for (String txn : txnIdArray) {
+                            txnId.put(txn);
+                        }
+                        jsonRequest.put("txnIdArray", txnId);
 
                         // Building Optional params Object
                         jsonOptionalParams.put("amountCashback",
@@ -1065,6 +1122,15 @@ public class EzeNativeSampleActivity extends Activity implements OnClickListener
                                 break;
                             case REQUEST_CODE_SERVICE_REQUEST:
                                 callServiceRequest(jsonRequest);
+                                break;
+                            case REQUEST_CODE_GET_TXN_DETAIL:
+                                doGetTxnDetails(jsonRequest);
+                                break;
+                            case REQUEST_CODE_STOP_PAYMENT:
+                                doStopPayment(jsonRequest);
+                                break;
+                            case REQUEST_CODE_GET_TXN_DETAIL_WITHOUT_STOP:
+                                doGetTxnDetailsWithoutStop(jsonRequest);
                                 break;
                         }
                         alertDialog.cancel();

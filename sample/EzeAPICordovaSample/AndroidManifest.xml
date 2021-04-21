@@ -3,8 +3,8 @@
   xmlns:tools="http://schemas.android.com/tools"
   package="com.ezeapi.sample"
   android:hardwareAccelerated="true"
-  android:versionCode="16"
-  android:versionName="7.0"
+  android:versionCode="17"
+  android:versionName="8.0"
   tools:ignore="GradleOverrides">
 
   <supports-screens

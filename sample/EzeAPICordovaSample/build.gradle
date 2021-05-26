@@ -30,7 +30,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:4.0.2'
     }
 
 }
@@ -104,7 +104,7 @@ if (ext.cdvCompileSdkVersion == null) {
     ext.cdvCompileSdkVersion = privateHelpers.getProjectTarget()
 }
 if (ext.cdvBuildToolsVersion == null) {
-    ext.cdvBuildToolsVersion = "26.0.2"
+    ext.cdvBuildToolsVersion = "28.0.3"
 }
 if (ext.cdvDebugSigningPropertiesFile == null && file('debug-signing.properties').exists()) {
     ext.cdvDebugSigningPropertiesFile = 'debug-signing.properties'
@@ -138,18 +138,20 @@ cdvBuildRelease.dependsOn {
     return computeBuildTargetName(false)
 }
 
-task cdvPrintProps << {
-    println('cdvCompileSdkVersion=' + cdvCompileSdkVersion)
-    println('cdvBuildToolsVersion=' + cdvBuildToolsVersion)
-    println('cdvVersionCode=' + cdvVersionCode)
-    println('cdvMinSdkVersion=' + cdvMinSdkVersion)
-    println('cdvBuildMultipleApks=' + cdvBuildMultipleApks)
-    println('cdvReleaseSigningPropertiesFile=' + cdvReleaseSigningPropertiesFile)
-    println('cdvDebugSigningPropertiesFile=' + cdvDebugSigningPropertiesFile)
-    println('cdvBuildArch=' + cdvBuildArch)
-    println('computedVersionCode=' + android.defaultConfig.versionCode)
-    android.productFlavors.each { flavor ->
-        println('computed' + flavor.name.capitalize() + 'VersionCode=' + flavor.versionCode)
+task cdvPrintProps {
+    doLast {
+        println('cdvCompileSdkVersion=' + cdvCompileSdkVersion)
+        println('cdvBuildToolsVersion=' + cdvBuildToolsVersion)
+        println('cdvVersionCode=' + cdvVersionCode)
+        println('cdvMinSdkVersion=' + cdvMinSdkVersion)
+        println('cdvBuildMultipleApks=' + cdvBuildMultipleApks)
+        println('cdvReleaseSigningPropertiesFile=' + cdvReleaseSigningPropertiesFile)
+        println('cdvDebugSigningPropertiesFile=' + cdvDebugSigningPropertiesFile)
+        println('cdvBuildArch=' + cdvBuildArch)
+        println('computedVersionCode=' + android.defaultConfig.versionCode)
+        android.productFlavors.each { flavor ->
+            println('computed' + flavor.name.capitalize() + 'VersionCode=' + flavor.versionCode)
+        }
     }
 }
 
@@ -169,12 +171,14 @@ android {
 
     defaultConfig {
         versionCode cdvVersionCode ?: Integer.parseInt("" + privateHelpers.extractIntFromManifest("versionCode") + "0")
+        minSdkVersion 19
         if (cdvMinSdkVersion != null) {
             minSdkVersion cdvMinSdkVersion
         }
+        applicationId "com.ezeapi.sample"
     }
 
-    compileSdkVersion 29
+    compileSdkVersion cdvCompileSdkVersion
     buildToolsVersion cdvBuildToolsVersion
 
     if (Boolean.valueOf(cdvBuildMultipleApks)) {
@@ -210,8 +214,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_6
-        targetCompatibility JavaVersion.VERSION_1_6
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     if (cdvReleaseSigningPropertiesFile) {
@@ -219,8 +223,7 @@ android {
             release {
                 // These must be set or Gradle will complain (even if they are overridden).
                 keyAlias = ""
-                keyPassword = "__unset"
-                // And these must be set to non-empty in order to have the signing step added to the task graph.
+                keyPassword = "__unset" // And these must be set to non-empty in order to have the signing step added to the task graph.
                 storeFile = null
                 storePassword = "__unset"
             }
@@ -229,21 +232,23 @@ android {
             release {
                 signingConfig signingConfigs.release
             }
+            debug {
+                signingConfig signingConfigs.release
+            }
         }
         addSigningProps(cdvReleaseSigningPropertiesFile, signingConfigs.release)
     }
     if (cdvDebugSigningPropertiesFile) {
         addSigningProps(cdvDebugSigningPropertiesFile, signingConfigs.debug)
     }
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '28.0.3'
 }
 
-
 dependencies {
-    compile fileTree(include: '*.jar', dir: 'libs')
-    compile(name: 'ezetapandroidsdk_2_25', ext: 'aar')
-    // SUB-PROJECT DEPENDENCIES START
-    // SUB-PROJECT DEPENDENCIES END
+//    implementation fileTree(include: '*.jar', dir: 'libs')
+    implementation(name: 'ezetapandroidsdk_2_25', ext: 'aar')
+    implementation(name: 'android-support-v4', ext: 'jar')
+
     implementation project(':CordovaLib')
 }
 

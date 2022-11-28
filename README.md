@@ -185,3 +185,120 @@ import RNEzetapSdk from 'react-native-ezetap-sdk';
      var response = await RNEzetapSdk.initialize(json);
   
 
+# Flutter Ezetap SDK
+
+[![pub package](https://img.shields.io/pub/v/ezetap_sdk.svg)](https://pub.dev/packages/ezetap_sdk)
+[![pub points](https://img.shields.io/pub/points/ezetap_sdk?color=2E8B57&label=pub%20points)](https://pub.dev/packages/ezetap_sdk/score)
+
+Welcome to Ezetap Payments Flutter SDK integration! You can easily collect payments from your existing android applications by integrating the SDK.
+
+## How integration works
+1. Include the SDK in your mobile application to collect payments.
+2. SDK interfaces with a Service App, this App will be installed during run-time.
+3. Service App interfaces with the Card Device and Ezetap Servers to finish payment processing and notifies the status to SDK.
+
+## Prerequisites
+Supported on Android API version 16(JellyBean) or above.
+
+## Use this package as a library
+
+This will add a line like this to your package's pubspec.yaml (and run an implicit ```flutter pub get```)
+```
+dependencies:
+  ezetap_sdk: ^0.0.6
+```
+
+## Import it
+Now in your Dart code, you can use:
+
+```import 'package:ezetap_sdk/ezetap_sdk.dart';```
+
+## Methods Available
+
+```
+  EzetapSdk.initialize(json);
+
+  EzetapSdk.prepareDevice();
+
+  EzetapSdk.sendReceipt(json);
+
+  EzetapSdk.serviceRequest(json);
+
+  EzetapSdk.searchTransaction(json);
+
+  EzetapSdk.getTransaction(json);
+
+  EzetapSdk.checkForIncompleteTransaction(json);
+
+  EzetapSdk.voidTransaction(String transactionID);
+
+  EzetapSdk.attachSignature(json);
+
+  EzetapSdk.pay(json);
+
+  EzetapSdk.brandEMITransaction(json);
+
+  EzetapSdk.normalEMITransaction(json);
+
+  EzetapSdk.printReceipt(String transactionID);
+
+  EzetapSdk.printBitmap(String? base64Image);
+
+  EzetapSdk.logout();
+
+  EzetapSdk.preAuth(json);
+
+  EzetapSdk.confirmPreAuth(json);
+
+  EzetapSdk.releasePreAuth(json);
+
+  EzetapSdk.stopPayment(json);
+
+  EzetapSdk.scanBarcode();
+
+  EzetapSdk.walletTransaction(json);
+
+  EzetapSdk.chequeTransaction(json);
+
+  EzetapSdk.cardTransaction(json);
+
+  EzetapSdk.cashTransaction(json);
+
+  EzetapSdk.remotePayment(json);
+
+  EzetapSdk.upiTransaction(json);
+
+  EzetapSdk.qrCodeTransaction(json);
+
+  EzetapSdk.refundTransaction(json);
+  
+```
+
+## Usage
+
+```
+
+Future<void> onBarcodePressed() async {
+String? result = await EzetapSdk.scanBarcode();
+if (!mounted) return;
+setState(() {
+_result = result;
+});
+}
+
+```
+
+
+## What you need
+1. Flutter development environment
+2. Android phone that can connect to internet
+3. This documentation
+4. Ezetap app key or login credentials to Ezetap service
+5. Ezetap device to test card payments
+
+
+
+
+
+
+

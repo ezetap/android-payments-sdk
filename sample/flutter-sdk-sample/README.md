@@ -1,4 +1,4 @@
-# custom_print_ezetap
+# Flutter Ezetap SDK Sample
 
 Ezetap SDK
 

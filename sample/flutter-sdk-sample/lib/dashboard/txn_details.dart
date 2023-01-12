@@ -34,7 +34,6 @@ class _TxnDetailsScreenState extends State<TxnDetailsScreen> {
   @override
   void initState() {
     getSettings();
-
     if (widget.requestCode == REQUEST_CODE_SEND_RECEIPT) {
       setState(() {
         emailMobileVisible = true;
@@ -71,52 +70,57 @@ class _TxnDetailsScreenState extends State<TxnDetailsScreen> {
         child: Column(
           children: [
             Expanded(
-                child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  onChanged: (val) {
-                    txnID = val;
-                  },
-                  obscureText: false,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter Transaction ID',
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Visibility(
-                  visible: emailMobileVisible,
-                  child: TextField(
-                    keyboardType: TextInputType.phone,
+                child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 20),
+                  TextField(
                     onChanged: (val) {
-                      mobileNo = val;
+                      txnID = val;
                     },
                     obscureText: false,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Enter Mobile Number',
+                      labelText: '*Enter Transaction ID',
                     ),
                   ),
-                ),
-                Visibility(
+                  const SizedBox(height: 20),
+                  Visibility(
                     visible: emailMobileVisible,
-                    child: const SizedBox(height: 20)),
-                Visibility(
-                  visible: emailMobileVisible,
-                  child: TextField(
-                    keyboardType: TextInputType.emailAddress,
-                    onChanged: (val) {
-                      emailId = val;
-                    },
-                    obscureText: false,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Enter Email ID',
+                    child: TextField(
+                      keyboardType: TextInputType.phone,
+                      onChanged: (val) {
+                        mobileNo = val;
+                      },
+                      obscureText: false,
+                      maxLength: 14,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: '*Enter Mobile Number',
+                      ),
                     ),
                   ),
-                )
-              ],
+                  Visibility(
+                      visible: emailMobileVisible,
+                      child: const SizedBox(height: 20)),
+                  Visibility(
+                    visible: emailMobileVisible,
+                    child: TextField(
+                      keyboardType: TextInputType.emailAddress,
+                      onChanged: (val) {
+                        emailId = val;
+                      },
+                      obscureText: false,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter Email ID',
+                      ),
+                    ),
+                  )
+                ],
+              ),
             )),
             Visibility(
                 visible: emailMobileVisible, child: const SizedBox(height: 20)),
@@ -153,27 +157,27 @@ class _TxnDetailsScreenState extends State<TxnDetailsScreen> {
                           return;
                         }
                         if (widget.requestCode == REQUEST_CODE_SEND_RECEIPT) {
-                          if (emailId.isEmpty || mobileNo.isEmpty) {
+                          if (mobileNo.isEmpty) {
                             CommonSnackBar.showSnackBar(
-                                context, "Please fill up mandatory params");
+                                context, "mobile number is mandatory");
                             return;
                           }
                         }
                         switch (widget.requestCode) {
                           case REQUEST_CODE_VOID:
-                            doVoidTxn(txnID,context);
+                            doVoidTxn(txnID, context);
                             break;
                           case REQUEST_CODE_ATTACH_SIGN:
-                            doAttachSignature(txnID,context);
+                            doAttachSignature(txnID, context);
                             break;
                           case REQUEST_CODE_PRINT_RECEIPT:
-                            doPrintReceipt(txnID,context);
+                            doPrintReceipt(txnID, context);
                             break;
                           case REQUEST_CODE_SEND_RECEIPT:
-                            doSendReceipt(txnID,context);
+                            doSendReceipt(txnID, context);
                             break;
                           case REQUEST_CODE_RELEASE_PRE_AUTH:
-                            doReleasePreAuth(txnID,context);
+                            doReleasePreAuth(txnID, context);
                         }
                       },
                       child: const Text(
@@ -250,6 +254,7 @@ class _TxnDetailsScreenState extends State<TxnDetailsScreen> {
     if (errorModel.status == "fail") {
       CommonSnackBar.showSnackBar(
           context, "${errorModel.error?.code} \n${errorModel.error?.message}");
+      Navigator.of(context).pop(result);
     } else {
       Navigator.of(context).pop(result);
     }

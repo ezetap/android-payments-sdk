@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'first_screen.dart';
 
 void main() {
+  // Be sure to add this line if `PackageInfo.fromPlatform()` is called before runApp()
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

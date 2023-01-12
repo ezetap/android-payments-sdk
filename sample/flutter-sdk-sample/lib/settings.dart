@@ -129,6 +129,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     sharedPref.setString(APP_MODE, appMode);
     CommonSnackBar.showSnackBar(context, "Settings Saved");
     FocusScope.of(context).requestFocus(FocusNode());
+  /*  ///https://ezetap.atlassian.net/browse/CLIENT-897
+    Navigator.pop(context);*/
   }
 
   Future<void> showSettingsIfStored() async {

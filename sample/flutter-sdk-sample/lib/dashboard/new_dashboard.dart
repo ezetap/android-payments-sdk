@@ -24,15 +24,13 @@ class _NewDashboardScreenState extends State<NewDashboardScreen> {
     "initialize",
     "prepareDevice",
     "sendReceipt",
-    "serviceRequest",
+    "Request Callback",
     "searchTransaction",
     "getTransactionDetails",
     "checkForIncompleteTransaction",
     "voidTransaction",
     "attachSignature",
     "pay",
-    "brandEMITransaction",
-    "normalEMITransaction",
     "printReceipt",
     "printBitmap",
     "logout",
@@ -41,19 +39,10 @@ class _NewDashboardScreenState extends State<NewDashboardScreen> {
     "releasePreAuth",
     "stopPayment",
     "scanBarcode",
- /*   "getCardInfo",
-    "getLoyaltyCardInfo",*/
-    "walletTransaction",
-    "chequeTransaction",
-    "cardTransaction - sale",
     "cardTransaction - cashback",
     "cardTransaction - cash@POS",
-    "cashTransaction",
-    "remotePayment",
-  /*  "displayTransactionHistory",*/
-    "upiTransaction",
-    "qrCodeTransaction",
-    "refundTransaction"
+    "refundTransaction",
+    "checkUpdates"
   };
   var apiKey = "";
   var merchantName = "";
@@ -140,83 +129,48 @@ class _NewDashboardScreenState extends State<NewDashboardScreen> {
                                   openPaymentPayloadPopup(REQUEST_CODE_PAY);
                                   break;
                                 case 10:
-                                  openPaymentPayloadPopup(
-                                      REQUEST_CODE_BRAND_EMI);
-                                  break;
-                                case 11:
-                                  openPaymentPayloadPopup(
-                                      REQUEST_CODE_NORMAL_EMI);
-                                  break;
-                                case 12:
                                   openTXNIdEnterPopup(
                                       REQUEST_CODE_PRINT_RECEIPT);
                                   break;
-                                case 13:
+                                case 11:
                                   printBitmap();
                                   break;
-                                case 14:
+                                case 12:
                                   doCloseEzetap();
                                   break;
-                                case 15:
+                                case 13:
                                   openPaymentPayloadPopup(
                                       REQUEST_CODE_PRE_AUTH);
                                   break;
-                                case 16:
+                                case 14:
                                   openPaymentPayloadPopup(
                                       REQUEST_CODE_CONFIRM_PRE_AUTH);
                                   break;
-                                case 17 :
+                                case 15 :
                                   openTXNIdEnterPopup(
                                       REQUEST_CODE_RELEASE_PRE_AUTH);
                                   break;
-                                case 18:
+                                case 16:
                                   openPaymentPayloadPopup(
                                       REQUEST_CODE_STOP_PAYMENT);
                                   break;
-                                case 19:
+                                case 17:
                                   scanBarCodeInApp();
                                   break;
-                             /*   case 20:
-                                  getCardInfoSwiped();
-                                  break;*/
-                                case 20:
-                                  openPaymentPayloadPopup(
-                                      REQUEST_CODE_WALLET_TXN);
-                                  break;
-                                case 21:
-                                  openPaymentPayloadPopup(
-                                      REQUEST_CODE_CHEQUE_TXN);
-                                  break;
-                                case 22:
-                                  openPaymentPayloadPopup(
-                                      REQUEST_CODE_SALE_TXN);
-                                  break;
-                                case 23:
+                                case 18:
                                   openPaymentPayloadPopup(
                                       REQUEST_CODE_CASH_BACK_TXN);
                                   break;
-                                case 24:
+                                case 19:
                                   openPaymentPayloadPopup(
                                       REQUEST_CODE_CASH_AT_POS_TXN);
                                   break;
-                                case 25:
-                                  openPaymentPayloadPopup(
-                                      REQUEST_CODE_CASH_TXN);
-                                  break;
-                                case 26:
-                                  openPaymentPayloadPopup(
-                                      REQUEST_CODE_REMOTE_PAY);
-                                  break;
-                                case 27:
-                                  openPaymentPayloadPopup(REQUEST_CODE_UPI);
-                                  break;
-                                case 28:
-                                  openPaymentPayloadPopup(
-                                      REQUEST_CODE_QR_CODE_PAY);
-                                  break;
-                                case 29:
+                                case 20:
                                   openPaymentPayloadPopup(
                                       REQUEST_CODE_REFUND_TRANSACTION);
+                                  break;
+                                case 21:
+                                  checkForUpdate();
                                   break;
                               }
                             },
@@ -392,9 +346,21 @@ class _NewDashboardScreenState extends State<NewDashboardScreen> {
   }
 
   Future<void> getCardInfoSwiped() async {
-    var json ={};
     try {
-      final String? result = await EzetapSdk.getCardInfo(jsonEncode(json));
+      final String? result = await EzetapSdk.getCardInfo();
+      setState(() {
+        mResult = result!;
+      });
+    } on PlatformException catch (e) {
+      setState(() {
+        mResult = e.message!;
+      });
+    }
+  }
+
+  Future<void>  checkForUpdate() async{
+    try {
+      final String? result = await EzetapSdk.checkForUpdates();
       setState(() {
         mResult = result!;
       });

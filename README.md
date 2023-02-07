@@ -212,7 +212,7 @@ implicit ```flutter pub get```)
 
 ```
 dependencies:
-  ezetap_sdk: ^0.1.1
+  ezetap_sdk: ^0.1.2
 ```
 
 ## Import it
@@ -230,7 +230,7 @@ Now in your Dart code, you can use:
       "merchantName": "merchantName",
       "userName": "userName",
       "currencyCode": 'INR',
-      "appMode": "SANDBOX",
+      "appMode": "Your environment",
       "captureSignature": 'true',
       "prepareDevice": 'false',
       "captureReceipt": 'false'
@@ -299,6 +299,7 @@ Now in your Dart code, you can use:
    
   EzetapSdk.checkForIncompleteTransaction(json);
 
+  Pass the transactionId to this function
   EzetapSdk.voidTransaction(String transactionID);
 
    var json = {"txnId": "transactionID"};
@@ -332,8 +333,10 @@ var json = {
 
   EzetapSdk.pay(json);
 
+  Pass the transactionId to this function
   EzetapSdk.printReceipt(String transactionID);
-
+  
+  Pass the image as base64 string to this function
   EzetapSdk.printBitmap(String? base64Image);
 
   EzetapSdk.logout();
@@ -344,10 +347,10 @@ var json = {
 
   EzetapSdk.scanBarcode();
 
-var json = {
-  "amount": "100",
-  "txnId": "transactionID"
-};
+   var json = {
+     "amount": "100",
+     "txnId": "transactionID"
+   };
   EzetapSdk.refundTransaction(json);
   
   EzetapSdk.checkForUpdates();

@@ -128,7 +128,7 @@ There is a sample Android App inside the `sample` folder of this repository. You
 
 
 # react-native-ezetap-sdk
-
+[![npm version](https://badge.fury.io/js/react-native-ezetap-sdk.svg)](https://www.npmjs.com/package/react-native-ezetap-sdk) [![Downloads](https://img.shields.io/npm/dm/react-native-ezetap-sdk)](https://www.npmjs.com/package/my-awesome-package) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ## Getting started
 
 `$ npm i react-native-ezetap-sdk`
@@ -382,8 +382,7 @@ import RNEzetapSdk from 'react-native-ezetap-sdk';
 
 # ezetap_sdk
 
-[![pub package](https://img.shields.io/pub/v/ezetap_sdk.svg)](https://pub.dev/packages/ezetap_sdk)
-[![pub points](https://img.shields.io/pub/points/ezetap_sdk?color=2E8B57&label=pub%20points)](https://pub.dev/packages/ezetap_sdk/score)
+[![pub package](https://img.shields.io/pub/v/ezetap_sdk.svg)](https://pub.dev/packages/ezetap_sdk) [![pub points](https://img.shields.io/pub/points/ezetap_sdk?color=2E8B57&label=pub%20points)](https://pub.dev/packages/ezetap_sdk/score) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Welcome to Ezetap Payments Flutter SDK integration! You can easily collect payments from your
 existing android applications by integrating the SDK.

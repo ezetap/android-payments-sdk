@@ -128,14 +128,11 @@ There is a sample Android App inside the `sample` folder of this repository. You
 
 
 # react-native-ezetap-sdk
-
+[![npm version](https://badge.fury.io/js/react-native-ezetap-sdk.svg)](https://www.npmjs.com/package/react-native-ezetap-sdk) [![Downloads](https://img.shields.io/npm/dm/react-native-ezetap-sdk)](https://www.npmjs.com/package/react-native-ezetap-sdk) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ## Getting started
 
-`$ npm install react-native-ezetap-sdk --save`
+`$ npm i react-native-ezetap-sdk`
 
-### Mostly automatic installation
-
-`$ react-native link react-native-ezetap-sdk`
 
 ### Manual installation
 
@@ -144,7 +141,7 @@ There is a sample Android App inside the `sample` folder of this repository. You
 1. Open  `node_modules`
     Add `react-native-ezetap-sdk@x.x.x` folder
 2. Open up `android/app/src/main/java/[...]/MainApplication.java`
-  - Add `import com.reactlibrary.RNEzetapSdkPackage;` to the imports at the top of the file
+  - Add `import com.ezetapsdk.RNEzetapSdkPackage;` to the imports at the top of the file
   - Add `new RNEzetapSdkPackage()` to the list returned by the `getPackages()` method
 3. Append the following lines to `android/settings.gradle`:
   	```
@@ -155,9 +152,13 @@ There is a sample Android App inside the `sample` folder of this repository. You
   	```
       implementation project(':react-native-ezetap-sdk')
   	```
-5. Open up `android/app/src/main/AndroidManifest.xml`
-  - Add `tools:replace="android:allowBackup"` in `application` tag
-    ```
+
+# After manual or automatic installation
+
+
+Open up `android/app/src/main/AndroidManifest.xml`
+- Add `tools:replace="android:allowBackup"` in `application` tag
+```javascript
      <application
         android:name=".MainApplication"
         android:allowBackup="false"
@@ -166,6 +167,7 @@ There is a sample Android App inside the `sample` folder of this repository. You
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+```
 
 ## What you need
 1. React Native development environment
@@ -179,17 +181,208 @@ There is a sample Android App inside the `sample` folder of this repository. You
 import RNEzetapSdk from 'react-native-ezetap-sdk';
 ```
 
-    • Then use the methods exposed by React Native SDK
-    • For example:
-    
-     var response = await RNEzetapSdk.initialize(json);
+### Methods
+
+```javascript
+      var json = {
+      "prodAppKey": "Your prod app key",
+      "demoAppKey": "Your demo app key",
+      "merchantName": "merchantName",
+      "userName": "userName",
+      "currencyCode": 'INR',
+      "appMode": "Your environment",
+      "captureSignature": 'true',
+      "prepareDevice": 'false',
+      "captureReceipt": 'false'
+    };
+    var response = await RNEzetapSdk.initialize(JSON.stringify(json));
+    console.log(response);
+```
+
+```javascript
+    var response = await RNEzetapSdk.prepareDevice();
+    console.log(response);
+```
+
+```javascript
+    var sendReceiptJson = {
+        "customerName": "customerName",
+        "mobileNo": "mobileNo",
+        "email": "emailId",
+        "txnId": "transactionID"
+      };
+      
+    var response = await RNEzetapSdk.sendReceipt(JSON.stringify(sendReceiptJson));
+    console.log(response);
+```
+
+
+```javascript
+      var json = {
+        "issueType": "issueType",
+        "issueInfo": "issueInfo",
+        "tags": [
+          "tag1","tag2"
+        ]
+      };
   
+    var response = await RNEzetapSdk.serviceRequest(JSON.stringify(json));
+   console.log(response);
+```
+
+
+```javascript
+      var json = {
+        "agentName": "username",
+        "saveLocally": false
+      };
+  
+    var response = await RNEzetapSdk.searchTransaction(JSON.stringify(json));
+   console.log(response);
+```
+
+
+
+```javascript
+     var json = {
+        "amount": "100",
+        "options": {
+          "amountTip": 0.0,
+          "references": {
+            "reference1": "sffr",
+            "additionalReferences": [
+      
+            ]
+          },
+          "customer": {
+      
+          },
+          "serviceFee": -1.0,
+          "addlData": {
+            "addl1": "addl1",
+            "addl2": "addl2",
+            "addl3": "addl3"
+          },
+          "appData": {
+            "app1": "app1",
+            "app2": "app2",
+            "app3": "app3"
+          }
+        }
+      };
+  
+    var response = await RNEzetapSdk.getTransaction(JSON.stringify(json));
+   console.log(response);
+```
+
+
+```javascript
+     var json = {};
+    var response = await RNEzetapSdk.checkForIncompleteTransaction(JSON.stringify(json));
+   console.log(response);
+```
+
+
+```javascript
+    //Pass the transactionId to this function
+    var transactionID = "";
+    var response = await RNEzetapSdk.voidTransaction(transactionID);
+   console.log(response);
+```
+
+
+
+```javascript
+    var json = {"txnId": "transactionID"};
+    var response = await RNEzetapSdk.attachSignature(JSON.stringify(json));
+   console.log(response);
+```
+
+
+```javascript
+  var json = {
+    "amount": "123",
+    "options": {
+      "serviceFee": 100,
+      "paymentBy": "CREDIT OR DEBIT OR ANY (**To be used only if the service fee is being added.)",
+      "paymentMode": "Card/Cash/Cheque/UPI/UPI_VOUCHER/RemotePay/BHARATQR/Brand_Offers/Brand_EMI/Normal_EMI/Wallet ",
+      "providerName": "<NBFC> eg. ZestMoney. (**providerName and emiType are to be passed only if user wants to use ZestMoney. In this scenario, set \"paymentMode”:”EMI”)",
+      "emiType": "NORMAL, BRAND, EMI",
+      "references": {
+        "reference1": "1234",
+        "additionalReferences": [
+          "addRef_xx1",
+          "addRef_xx2"
+        ]
+      },
+      "appData": {
+        "walletAcquirer": "freecharge/ola_money/ etc.(**walletAcquirer are to be passed only if user sets \"paymentMode”:”Wallet”)"
+      },
+      "customer": {
+        "name": "xyz",
+        "mobileNo": "1234567890",
+        "email": "abc@xyz.com"
+      }
+    }
+  };
+  
+   var response = await RNEzetapSdk.pay(JSON.stringify(json));
+   console.log(response);
+```
+
+
+```javascript
+    //Pass the transactionId to this function
+    var transactionID = "";
+    var response = await RNEzetapSdk.printReceipt(transactionID);
+     console.log(response);
+```
+
+
+```javascript
+    //Pass the image as base64 string to this function
+    var base64ImageString = "";
+    var response = await RNEzetapSdk.printBitmap(base64ImageString);
+   console.log(response);
+```
+
+```javascript
+    var response = await RNEzetapSdk.logout();
+   console.log(response);
+```
+
+```javascript
+    var json = {"txnIds":[""]};
+    var response = await RNEzetapSdk.stopPayment(JSON.stringify(json));
+   console.log(response);
+```
+
+
+```javascript
+    var response = await RNEzetapSdk.scanBarcode();
+   console.log(response);
+```
+
+```javascript
+     var json = {
+       "amount": "100",
+       "txnId": "transactionID"
+     };
+    var response = await RNEzetapSdk.refundTransaction(JSON.stringify(json));
+     console.log(response);
+```
+
+```javascript
+    var response = await RNEzetapSdk.checkForUpdates();
+    console.log(response);
+```  
 
 # Flutter Ezetap SDK
 
 
-[![pub package](https://img.shields.io/pub/v/ezetap_sdk.svg)](https://pub.dev/packages/ezetap_sdk)
-[![pub points](https://img.shields.io/pub/points/ezetap_sdk?color=2E8B57&label=pub%20points)](https://pub.dev/packages/ezetap_sdk/score)
+# ezetap_sdk
+
+[![pub package](https://img.shields.io/pub/v/ezetap_sdk.svg)](https://pub.dev/packages/ezetap_sdk) [![pub points](https://img.shields.io/pub/points/ezetap_sdk?color=2E8B57&label=pub%20points)](https://pub.dev/packages/ezetap_sdk/score) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Welcome to Ezetap Payments Flutter SDK integration! You can easily collect payments from your
 existing android applications by integrating the SDK.
@@ -212,7 +405,7 @@ implicit ```flutter pub get```)
 
 ```
 dependencies:
-  ezetap_sdk: ^0.1.1
+  ezetap_sdk: ^0.1.3
 ```
 
 ## Import it
@@ -223,23 +416,25 @@ Now in your Dart code, you can use:
 
 ## Methods Available
 
-```
+```javascript
  var json = {
       "prodAppKey": "Your prod app key",
       "demoAppKey": "Your demo app key",
       "merchantName": "merchantName",
       "userName": "userName",
       "currencyCode": 'INR',
-      "appMode": "SANDBOX",
+      "appMode": "Your environment",
       "captureSignature": 'true',
       "prepareDevice": 'false',
       "captureReceipt": 'false'
     };
   
   EzetapSdk.initialize(json);
-
+```
+```javascript
   EzetapSdk.prepareDevice();
-
+```
+```javascript
   var sendReceiptJson = {
       "customerName": "customerName",
       "mobileNo": "mobileNo",
@@ -248,7 +443,8 @@ Now in your Dart code, you can use:
     };
     
   EzetapSdk.sendReceipt(sendReceiptJson);
-
+```
+```javascript
     var json = {
       "issueType": "issueType",
       "issueInfo": "issueInfo",
@@ -258,14 +454,16 @@ Now in your Dart code, you can use:
     };
 
   EzetapSdk.serviceRequest(json);
-
+```
+```javascript
     var json = {
       "agentName": "username",
       "saveLocally": false
     };
 
   EzetapSdk.searchTransaction(json);
-
+```
+```javascript
    var json = {
       "amount": "100",
       "options": {
@@ -294,16 +492,20 @@ Now in your Dart code, you can use:
     };
 
   EzetapSdk.getTransaction(json);
-
+```
+```javascript
    var json = {};
-   
   EzetapSdk.checkForIncompleteTransaction(json);
-
+  ```
+  ```javascript
+  //Pass the transactionId to this function
   EzetapSdk.voidTransaction(String transactionID);
-
+```
+```javascript
    var json = {"txnId": "transactionID"};
   EzetapSdk.attachSignature(json);
-
+```
+```javascript
 var json = {
   "amount": "123",
   "options": {
@@ -329,31 +531,36 @@ var json = {
     }
   }
 };
-
   EzetapSdk.pay(json);
-
-  EzetapSdk.printReceipt(String transactionID);
-
-  EzetapSdk.printBitmap(String? base64Image);
-
-  EzetapSdk.logout();
-
-  var json = {"txnIds":[""]};
-  
-  EzetapSdk.stopPayment(json);
-
-  EzetapSdk.scanBarcode();
-
-var json = {
-  "amount": "100",
-  "txnId": "transactionID"
-};
-  EzetapSdk.refundTransaction(json);
-  
-  EzetapSdk.checkForUpdates();
-  
 ```
-
+```javascript
+  //Pass the transactionId to this function
+  EzetapSdk.printReceipt(String transactionID);
+```
+```javascript
+  //Pass the image as base64 string to this function
+  EzetapSdk.printBitmap(String? base64Image);
+```
+```javascript
+  EzetapSdk.logout();
+```
+```javascript
+  var json = {"txnIds":[""]};
+  EzetapSdk.stopPayment(json);
+```
+```javascript
+  EzetapSdk.scanBarcode();
+```
+```javascript
+   var json = {
+     "amount": "100",
+     "txnId": "transactionID"
+   };
+  EzetapSdk.refundTransaction(json);
+```
+```javascript
+  EzetapSdk.checkForUpdates();
+```
 
 ```dart
 Future<void> onPaymentClicked(json) async {
@@ -364,7 +571,6 @@ Future<void> onPaymentClicked(json) async {
   });
 }
 ```
-
 ```dart
 Future<void> onBarcodePressed() async {
   String? result = await EzetapSdk.scanBarcode();
@@ -382,10 +588,3 @@ Future<void> onBarcodePressed() async {
 3. This documentation
 4. Ezetap app key or login credentials to Ezetap service
 5. Ezetap device to test card payments
-
-
-
-
-
-
-

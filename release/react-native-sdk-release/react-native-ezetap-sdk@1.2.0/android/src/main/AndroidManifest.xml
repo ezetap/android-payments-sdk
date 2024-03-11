@@ -1,0 +1,6 @@
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.ezetapsdk">
+  <uses-permission android:name="com.pax.permission.PRINTER" />
+</manifest>
+  

@@ -1,0 +1,49 @@
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+    }
+}
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        flatDir {
+            /*when adding new update to npm
+            * TODO Add dirs project(':react-native-ezetap-sdk').file('libs')
+            * adding new changes to functions exposed
+            * TODO Add dirs 'libs'*/
+            dirs project(':react-native-ezetap-sdk').file('libs')
+        }
+    }
+}
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 31
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode 1
+        versionName "1.0"
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    //fileTree(dir:'libs', include:['*.jar', '*.aar'])
+    implementation 'com.facebook.react:react-native:+'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.recyclerview:recyclerview:1.3.0'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation (name: 'ezetapandroidsdk-2_36', ext: 'aar')
+    implementation (name: 'ezetapprintersdk-v1.0', ext: 'aar')
+}
+  
